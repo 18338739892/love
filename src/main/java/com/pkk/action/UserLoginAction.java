@@ -54,6 +54,8 @@ public class UserLoginAction extends BaseAction {
 		System.out.println("Service为:" + queryUserService);
 		
 		System.out.print("测试");
+		
+		System.out.print("测试1");
 
 		UserLoginAction userLoginAction = new UserLoginAction();
 
