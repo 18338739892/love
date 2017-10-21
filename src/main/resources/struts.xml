@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!--启用动态调用方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<!--配置要拦截的后缀（多个用“逗号”隔开） -->
+	<constant name="struts.action.extension" value="action,do" />
+
+	<!--指定国际编码为UTF-8 -->
+	<constant name="struts.i18n.encoding" value="utf-8" />
+
+	<!-- 指定由spring负责action对象的创建 即<action>元素会由spring创建为bean，该bean的生命周期仍由struts管理 -->
+	<!-- <constant name="struts.objectFactory" value="spring" /> -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+
+	<!--定义 -->
+	<package name="web-default" namespace="/" extends="struts-default" />
+
+	<!--用户登录 -->
+	<include file="config/struts/struts_login.xml"></include>
+
+
+</struts>
