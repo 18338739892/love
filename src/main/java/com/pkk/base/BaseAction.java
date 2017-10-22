@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware, SessionAware {
 
+    
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
 

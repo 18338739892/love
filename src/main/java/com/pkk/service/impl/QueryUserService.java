@@ -2,10 +2,9 @@ package com.pkk.service.impl;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.pkk.dao.QueryUserDao;
+import com.pkk.dao.impl.QueryUserDao;
 import com.pkk.model.UserLoginModel;
 
 /**

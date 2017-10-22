@@ -1,4 +1,4 @@
-package com.pkk.dao;
+package com.pkk.dao.impl;
 
 import com.pkk.model.UserLoginModel;
 import org.hibernate.SessionFactory;
