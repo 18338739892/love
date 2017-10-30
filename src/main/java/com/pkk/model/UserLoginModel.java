@@ -18,9 +18,9 @@ import javax.persistence.*;
 public class UserLoginModel extends BaseModel {
     private Integer id;
     private String uname;
-    private String pwd;
-    private char sex;
-    private String dsc;
+    private String password;
+    private String level;
+    private String verifykey;
 
     @Id
     @GeneratedValue
@@ -43,35 +43,41 @@ public class UserLoginModel extends BaseModel {
     }
 
     @Column
-    public char getSex() {
-        return sex;
+    public String getLevel() {
+        return level;
     }
 
-    public void setSex(char sex) {
-        this.sex = sex;
+    public void setLevel(String level) {
+        this.level = level;
     }
+
 
     @Column
     public String getPwd() {
-        return pwd;
+        return password;
     }
 
     public void setPwd(String pwd) {
-        this.pwd = pwd;
+        this.password = pwd;
     }
 
     @Column
-    public String getDsc() {
-        return dsc;
+    public String getVerifykey() {
+        return verifykey;
     }
 
-    public void setDsc(String dsc) {
-        this.dsc = dsc;
+    public void setVerifykey(String verifykey) {
+        this.verifykey = verifykey;
     }
 
     @Override
     public String toString() {
-        return "UserLoginModel [id=" + id + ", uname=" + uname + ", pwd=" + pwd + ", sex=" + sex + ", dsc=" + dsc + "]";
+        return "UserLoginModel{" +
+                "id=" + id +
+                ", uname='" + uname + '\'' +
+                ", password='" + password + '\'' +
+                ", level='" + level + '\'' +
+                ", verifykey='" + verifykey + '\'' +
+                '}';
     }
-
 }
