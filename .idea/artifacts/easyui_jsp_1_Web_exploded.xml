@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="easyui-jsp-1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/easyui_jsp_1_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="easyui-jsp-1/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="easyui-jsp-1" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../MyHtml/easyui/easyui-jsp-1/webapp/WEB-INF/lib/fastjson-1.1.41.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
