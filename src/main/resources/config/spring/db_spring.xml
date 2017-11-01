@@ -101,7 +101,7 @@
 
     <!-- 配置事务切面 -->
     <aop:config>
-        <aop:pointcut id="pointCut" expression="execution(* com.pkk.dao.*.*(..))"/>
+        <aop:pointcut id="pointCut" expression="execution(* com.pkk.service.*.*(..))"/>
         <aop:advisor pointcut-ref="pointCut" advice-ref="txAdvice"/>
     </aop:config>
 </beans>

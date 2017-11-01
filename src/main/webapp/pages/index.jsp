@@ -314,10 +314,10 @@
                         <h2>欢迎使用<span>爱情</span>系统</h2>
                         <h4>请在使用前阅读一下文本</h4>
                         <p>本系统是给我最亲爱的国歌制作，以及使用，如果你在无意之间看到此网站，也可以使用此网站的功能，
-                        谢绝盗用网站的资源，本网站归<span style="background-color:#0052A3">《昆仔科技快讯》</span>所有，违者必究。谢谢</p>
+                            谢绝盗用网站的资源，本网站归<span style="background-color:#0052A3">《昆仔科技快讯》</span>所有，违者必究。谢谢</p>
                         <h2><span>用户  注册</span></h2>
                         <p>如果你不是我亲爱的国歌的话，也是可以注册的，现在这个版本的是在开发中的，我会不断完善这个项目，给亲爱的国歌更好的体验，给用户
-                        更好的体验，功能继续完善中......</p>
+                            更好的体验，功能继续完善中......</p>
                     </div>
                     <div class="wd_guest_slider">
                         <div class="owl-carousel owl-theme">
@@ -349,44 +349,48 @@
                     <div class="wd_guest_formbox">
                         <span>注册或登录?</span>
                         <h4>赶快来吧!</h4>
-                        <div class="wd_guest_form">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <label>账号 :</label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <label>密码 :</label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <label>密钥 :</label>
-                                    <select>
-                                        <option value="0">00</option>
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <label>级别 :</label>
-                                    <select>
-                                        <option value="0">爱人</option>
-                                        <option value="1">朋友</option>
-                                        <option value="2">游客</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="wd_btn">
-                                        <a href="#">登录</a>
+
+
+                        <form method="post" action="index.jsp">
+                            <div class="wd_guest_form">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label>账号 :</label>
+                                        <input type="text" name="userlogin.uname">
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="wd_btn">
-                                        <a href="#">注册</a>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label>密码 :</label>
+                                        <input type="text" name="userlogin.password">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>密钥 :</label>
+                                        <input type="text" name="userlogin.level">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>级别 :</label>
+                                        <select>
+                                            <option value="0">爱人</option>
+                                            <option value="1">朋友</option>
+                                            <option value="2">游客</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="wd_btn">
+                                            <input type="submit" value="登录">
+                                            <%--<a href="#">登录</a>--%>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="wd_btn">
+                                            <%--<a href="#">注册</a>--%>
+                                                <input type="submit" value="注册">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>
@@ -1016,7 +1020,7 @@
         <div class="col-md-12">
             <div class="wd_footer_section">
                 <img src="images/header/flogo.png" alt="Logo" class="img-responsive">
-                <p>Copyright &copy; 2017.昆仔科技快讯.<a target="_blank" href="#">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                <p>Copyright &copy; 2017.昆仔科技快讯.<a target="_blank" href="#"></a>
                 </p>
             </div>
         </div>
