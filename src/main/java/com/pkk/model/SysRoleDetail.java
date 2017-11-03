@@ -2,11 +2,11 @@ package com.pkk.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,22 +24,29 @@ import com.pkk.base.PkkBaseModel;
 @Table(name = "sys_role_detail")
 public class SysRoleDetail extends PkkBaseModel {
 
-    private SysRoleDetailId sysRoleDetailId;
+    private Integer id;
+    private Integer roleid;
+    private Integer menuid;
+    private String  orgcode;
 
-    private String orgcode;
-
-    @EmbeddedId
-    @AttributeOverrides({
-            @AttributeOverride(name = "roleid", column = @Column(name = "roleid")),
-            @AttributeOverride(name = "menuid", column = @Column(name = "menuid"))})
-    public SysRoleDetailId getSysRoleDetailId() {
-        return this.sysRoleDetailId;
+    @Column(name = "roleid")
+    public Integer getRoleid() {
+        return this.roleid;
     }
 
-
-    public void setSysRoleDetailId(SysRoleDetailId sysRoleDetailId) {
-        this.sysRoleDetailId = sysRoleDetailId;
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
+
+    @Column(name = "menuid")
+    public Integer getMenuid() {
+        return this.menuid;
+    }
+
+    public void setMenuid(Integer menuid) {
+        this.menuid = menuid;
+    }
+
 
     @Column(name = "orgcode", length = 32)
     public String getOrgcode() {
@@ -51,14 +58,15 @@ public class SysRoleDetail extends PkkBaseModel {
     }
 
     @Override
-    @Transient
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
-        return null;
+        return id;
     }
 
     @Override
     public void setId(Integer id) {
-
+        this.id = id;
     }
 
     @Override
@@ -75,7 +83,8 @@ public class SysRoleDetail extends PkkBaseModel {
     @Override
     public String toString() {
         return "SysRoleDetail{" +
-                "sysRoleDetailId=" + sysRoleDetailId +
+                "roleid=" + roleid +
+                ", menuid=" + menuid +
                 ", orgcode='" + orgcode + '\'' +
                 '}';
     }

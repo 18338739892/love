@@ -29,28 +29,24 @@ public class SysMenuDAO extends BaseDao<SysMenu> {
      * @param roleid
      * @return
      */
-    public List<SysMenu> getParentMenuList(int roleid) {
+    public List<SysMenu> getParentMenuList(int roleid) throws RuntimeException {
 
         try {
-//            String sql = "from SysMenu where id in(select menuid from SysRoleDetail where roleid= :roleid ) and parentid=0 and plevel=1 and status=1 order by id";
-            String sql = "from SysMenu where id in(1,2,3,20) and parentid=0 and plevel=1 and status=1 order by id";
-
-            return (List<SysMenu>) super.sessionFactory.getCurrentSession().createQuery(sql).list();
+            String sql = "from SysMenu a where a.id in(select s.menuid from SysRoleDetail s where s.roleid= :roleid ) and a.parentid=0 and a.plevel=1 and a.status=1 order by a.id";
+            return (List<SysMenu>) super.sessionFactory.getCurrentSession().createQuery(sql).setParameter("roleid", roleid).list();
         } catch (RuntimeException re) {
             logger.error("获取父节点菜单出错：", re);
-            return null;
+            throw new RuntimeException();
         }
     }
 
-    public List<SysMenu> getChildMenuList(int roleid, int parentid) {
+    public List<SysMenu> getChildMenuList(int roleid, int parentid) throws RuntimeException {
         try {
-//            String sql = "from SysMenu where id in(select menuid from SysRoleDetail where roleid= :roleid ) and parentid= :parentid and status=1 order by id ";
-            String sql = "from SysMenu where id in(1,2,3,20) and parentid= :parentid and status=1 order by id ";
-            return (List<SysMenu>) super.sessionFactory.getCurrentSession().createQuery(sql).setParameter("parentid", parentid).list();
-
+            String sql = "from SysMenu where id in(select s.menuid  from SysRoleDetail s where s.roleid= :roleid) and parentid= :parentid and status=1 order by id ";
+            return (List<SysMenu>) super.sessionFactory.getCurrentSession().createQuery(sql).setParameter("roleid", roleid).setParameter("parentid", parentid).list();
         } catch (RuntimeException re) {
             logger.error("获取子节点菜单出错：", re);
-            return null;
+            throw new RuntimeException();
         }
     }
 
