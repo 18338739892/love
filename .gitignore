@@ -1,0 +1,6 @@
+# git ignore
+*.class
+target
+classes
+*.iml
+*.idea
