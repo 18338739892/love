@@ -22,5 +22,15 @@
 <!-- 引入EasyUI的中文国际化js，让EasyUI支持中文 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/locale/easyui-lang-zh_CN.js"></script>
 
+<link rel="stylesheet" href="<%=contextPath%>/js/lib/style/syExtIcon.css"
+      type="text/css">
+<link rel="stylesheet" href="<%=contextPath%>/js/lib/style/syExtCss.css"
+      type="text/css">
+<script src="<%=contextPath%>/js/lib/style/syExtJquery.js" type="text/javascript"
+        charset="utf-8"></script>
+<script src="<%=contextPath%>/js/lib/style/syExtEasyUI.js" type="text/javascript"
+        charset="utf-8"></script>
+<script src="<%=contextPath%>/js/lib/style/syExtJavascript.js"
+        type="text/javascript" charset="utf-8"></script>
 
 

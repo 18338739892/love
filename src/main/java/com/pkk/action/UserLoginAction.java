@@ -1,8 +1,12 @@
 package com.pkk.action;
 
+import java.util.Map;
+
 import com.pkk.base.BaseAction;
+import com.pkk.model.SysUser;
 import com.pkk.model.UserLoginModel;
 import com.pkk.service.impl.QueryUserService;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,73 +25,84 @@ import javax.annotation.Resource;
 @Controller(value = "userLoginAction")
 public class UserLoginAction extends BaseAction {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static Logger UserLoginActionlogger = Logger.getLogger(UserLoginAction.class);
+    @SuppressWarnings("unused")
+    private static Logger UserLoginActionlogger = Logger.getLogger(UserLoginAction.class);
 
-	private UserLoginModel userLoginModel;
+    private UserLoginModel userLoginModel;
 
-	@Resource(name = "queryUserService")
-	private QueryUserService queryUserService;
+    @Resource(name = "queryUserService")
+    private QueryUserService queryUserService;
 
-	public QueryUserService getQueryUserService() {
-		return queryUserService;
-	}
+    public QueryUserService getQueryUserService() {
+        return queryUserService;
+    }
 
-	public void setQueryUserService(QueryUserService queryUserService) {
-		this.queryUserService = queryUserService;
-	}
+    public void setQueryUserService(QueryUserService queryUserService) {
+        this.queryUserService = queryUserService;
+    }
 
-	public UserLoginModel getUserLoginModel() {
-		return userLoginModel;
-	}
+    public UserLoginModel getUserLoginModel() {
+        return userLoginModel;
+    }
 
-	public void setUserLoginModel(UserLoginModel userLoginModel) {
-		this.userLoginModel = userLoginModel;
-	}
+    public void setUserLoginModel(UserLoginModel userLoginModel) {
+        this.userLoginModel = userLoginModel;
+    }
 
-	public String userLogin() {
-		System.out.println("Service为:" + queryUserService);
-		
-		System.out.print("测试");
-		
-		System.out.print("测试1");
+    public String userLogin() {
+        System.out.println("Service为:" + queryUserService);
 
-		UserLoginAction userLoginAction = new UserLoginAction();
+        System.out.print("测试");
 
-		QueryUserService queryUserService = userLoginAction.getObject("queryUserService");
-		System.out.println("Service2为:" + queryUserService);
-		queryUserService.findUserInfo();
+        System.out.print("测试1");
 
-		System.out.println("用户的登录:" + userLoginModel.toString());
-		return "success";
-	}
+        UserLoginAction userLoginAction = new UserLoginAction();
 
-	public static <T> T getObject(T t) {
-		String[] locations = { "applicationContext.xml" };
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
-		System.out.println(t.getClass().getName());
-		String string = t.getClass().getSimpleName().substring(0, 1).toLowerCase()
-				+ t.getClass().getSimpleName().substring(1);
-		System.out.println(string);
-		return (T) ctx.getBean(string);
+        QueryUserService queryUserService = userLoginAction.getObject("queryUserService");
+        System.out.println("Service2为:" + queryUserService);
+        queryUserService.findUserInfo();
 
-	}
+        System.out.println("用户的登录:" + userLoginModel.toString());
+        return "success";
+    }
 
-	public static QueryUserService getObject(String name) {
-		String[] locations = { "applicationContext.xml" };
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
+    public static <T> T getObject(T t) {
+        String[] locations = {"applicationContext.xml"};
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
+        System.out.println(t.getClass().getName());
+        String string = t.getClass().getSimpleName().substring(0, 1).toLowerCase()
+                + t.getClass().getSimpleName().substring(1);
+        System.out.println(string);
+        return (T) ctx.getBean(string);
 
-		return (QueryUserService) ctx.getBean(name);
+    }
 
-	}
+    public static QueryUserService getObject(String name) {
+        String[] locations = {"applicationContext.xml"};
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
 
-	public static void main(String[] args) {
-		getObject(QueryUserService.class);
-	}
+        return (QueryUserService) ctx.getBean(name);
+
+    }
+
+    public String testSuccess() {
+        
+        SysUser sysUserTest = new SysUser();
+        sysUserTest.setId(1);
+        sysUserTest.setRoleid(1);
+        Map session1 = super.getSession();
+
+
+        return "success";
+    }
+
+    public static void main(String[] args) {
+        getObject(QueryUserService.class);
+    }
 
 }

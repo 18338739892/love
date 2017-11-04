@@ -1,0 +1,173 @@
+@charset "utf-8";
+body {
+  font-family : 'Droid Sans', sans-serif;
+  font-size : 100%; 
+  margin : 0; 
+  padding : 0; 
+  position : relative; 
+  min-height : 100%; 
+  _height : 100%; 
+  cursor : default; 
+  _zoom : 1; 
+  overflow-x : hidden;
+}
+
+select, input, button { 
+  vertical-align : middle; 
+  font-size : 100%; 
+}
+
+ul, ol { 
+  list-style : none; 
+}
+
+fieldset, img { 
+  border: 0; 
+}
+
+html { 
+  height: 100% 
+}
+
+/*顶部*/
+.top-banner { 
+  width : 100%; 
+  height : 91px; 
+  background-image : url(images/login/top_03.png);
+}
+
+.logo-img { 
+   width : 975px; 
+   margin : 0 auto;
+}
+
+/*内容部分*/
+.loginwrapper {  
+  position : fixed; 
+  top : 50%; 
+  left : 50%;
+  width : 970px; 
+  height : 498px; 
+  margin : -277px 0 0 -475px; 
+}
+
+.logincontent { 
+  position : relative; 
+  width : 970px; 
+  height : 382px; 
+  margin : 107px 0 0; 
+}
+
+.content-bg { 
+  position : absolute; 
+  left : 0; 
+  top : 0; 
+  z-index : -1; 
+  width : 970px; 
+  height : 382px; 
+  background : url(images/login/content-img_12.png); 
+  background-repeat : no-repeat; 
+}
+
+/* main */
+.main { 
+  float : right; 
+  width : 290px; 
+  height : 275px; 
+  background-image : url(images/login/login-img_14.png);  
+  background-repeat : no-repeat; 
+  margin-top : 50px;
+}
+
+form {
+  padding : 72px 10px 40px 0px;
+}
+
+form li {
+  border : 1px solid #cccccc; 
+  height : 43px; 
+  width : 238px;
+  list-style : none;
+  background : #fff; 
+  margin-left : -14px;
+}
+
+.user {
+  background : url(images/login/icon_15.png) no-repeat 0px 0px;
+  height : 43px;
+  width : 50px;
+  display : block;
+  float : left;
+}
+
+.icon {
+  background : url(images/login/icon_18.png) no-repeat 0px 0px;
+  height : 42px;
+  width : 50px;
+  display : block;
+  float : left;
+}
+
+.code {
+  background : url(images/login/code_1.png) no-repeat 0px 0px;
+  height : 42px;
+  width : 50px;
+  display : block;
+  float : left;
+}
+
+input[type="text"], input[type="password"] {
+  font-family : 'Droid Sans', sans-serif;
+  padding : 12px 10px 12px 10px;
+  width : 70%;
+  color : #404040;
+  font-size : 16px;
+  outline : none;
+  background : none;
+  border : none; 
+  float : right;
+}
+
+input[type="text"]:hover, input[type="password"]:hover {
+  color:#3371b8;
+}
+
+input[type="button"] {
+  background : url(images/login/1_21.png); 
+  background-repeat : no-repeat; 
+  height : 30px; 
+  width : 240px;
+  outline : none;
+  border : none;
+  cursor : pointer; 
+  margin-top : 22px;  
+}
+
+.mima{ 
+  border : none; 
+  background : none;
+}
+
+input[type="button"]:hover {
+  background : url(images/login/2_21.png); 
+  background-repeat : no-repeat; 
+}
+
+/*底部*/
+.bottom { 
+  width : 100%; 
+  position : fixed; 
+  height : 46px; 
+  background-color : #dddddd; 
+  bottom : 0; 
+  border-bottom : 2px solid #99F;
+  border-top : 1px solid #cac8c8;
+}
+
+.footer-nav { 
+  font-size : 12px; 
+  color : #4d4b4b; 
+  text-align : center; 
+  line-height : 46px;
+}
+
