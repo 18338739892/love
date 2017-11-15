@@ -146,15 +146,16 @@ public class UserLoginAction extends BaseAction {
         Logger logger = Logger.getLogger(UserLoginAction.class);
         SMTPAppender appender = new SMTPAppender();
         try {
-            appender.setSMTPUsername("peikunkun@newcapec.net");
-            appender.setSMTPPassword("As15938320850");
-            appender.setTo("656678879@qq.com");
-            appender.setFrom("peikunkun@newcapec.net");
+            appender.setSMTPUsername("656678879@qq.com");
+            appender.setSMTPPassword("qbmolrppaahmbedb");
+            appender.setTo("kunzaikx@qq.com");
+            appender.setFrom("656678879@qq.com");
             // SMTP服务器 smtp.163.com
-            appender.setSMTPHost("smtp.newcapec.net");
+            appender.setSMTPHost("smtp.qq.com");
             appender.setLocationInfo(true);
             appender.setSubject("Error Mail From Log4J");
             appender.setLayout(new PatternLayout());
+            appender.setSMTPPort(465);
             appender.activateOptions();
             logger.addAppender(appender);
             logger.error("Hello World");

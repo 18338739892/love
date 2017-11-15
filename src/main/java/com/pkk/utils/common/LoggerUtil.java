@@ -60,17 +60,17 @@ public class LoggerUtil {
 
         //发送日志到指定邮箱中
         SMTPAppender smtpAppender = new SMTPAppender();
-        smtpAppender.setThreshold(Priority.ERROR);//发送邮件的门槛，仅当等于或高于ERROR（比如FATAL）时，邮件才被发送
+        smtpAppender.setThreshold(Priority.INFO);//发送邮件的门槛，仅当等于或高于ERROR（比如FATAL）时，邮件才被发送
         smtpAppender.setBufferSize(1 * 10);//缓存文件大小，日志达到1024k时发送Email
-        smtpAppender.setFrom("kunzaikx@qq.com");//发送邮件的邮箱帐号
-        smtpAppender.setSMTPUsername("kunzaikx@qq.com");//SMTP发送认证的帐号名
-        smtpAppender.setSMTPPassword("kunzaikxadmin1");//SMTP发送认证帐号搜索的密码
-        smtpAppender.setSMTPHost("smtp.qq.com");//SMTP邮件发送服务器地址
-        smtpAppender.setSMTPPort(587);//服务器地址，qq为587
+        smtpAppender.setFrom("peikunkun@newcapec.net");//发送邮件的邮箱帐号
+        smtpAppender.setSMTPUsername("peikunkun@newcapec.net");//SMTP发送认证的帐号名
+        smtpAppender.setSMTPPassword("As15938320850");//SMTP发送认证帐号搜索的密码
+        smtpAppender.setSMTPHost("smtp.newcapec.net");//SMTP邮件发送服务器地址
+//        smtpAppender.setSMTPPort(587);//服务器地址，qq为587
         smtpAppender.setSMTPDebug(true);//是否打印调试信息，如果选true，则会输出和SMTP之间的握手等详细信息
         smtpAppender.setSubject("love日志文件");//邮件主题
         //smtpAppender.setBcc("")//  #如果需要发副本给某人，则加入下列行
-        smtpAppender.setTo("peikunkun@newcapec.net");//送到什么邮箱，如果要发送给多个邮箱，则用逗号分隔
+        smtpAppender.setTo("656678879@qq.com");//送到什么邮箱，如果要发送给多个邮箱，则用逗号分隔
         smtpAppender.setLayout(patternLayout);//设置布局
         smtpAppender.activateOptions();
 
