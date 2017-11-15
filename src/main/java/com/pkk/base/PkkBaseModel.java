@@ -9,4 +9,5 @@ package com.pkk.base;
  * @date 11/2 0002 15:09
  */
 public abstract class PkkBaseModel implements IPkkBaseModel {
+
 }

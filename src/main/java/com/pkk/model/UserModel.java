@@ -15,12 +15,12 @@ import javax.persistence.*;
 
 @Table(name = "userinfo")
 @Entity
-public class UserLoginModel extends BaseModel {
+public class UserModel extends BaseModel {
     private Integer id;
-    private String uname;
-    private String password;
-    private String level;
-    private String verifykey;
+    private String  uname;
+    private String  password;
+    private String  level;
+    private String  verifykey;
 
     @Id
     @GeneratedValue
@@ -51,14 +51,13 @@ public class UserLoginModel extends BaseModel {
         this.level = level;
     }
 
-
     @Column
-    public String getPwd() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPwd(String pwd) {
-        this.password = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column
@@ -72,7 +71,7 @@ public class UserLoginModel extends BaseModel {
 
     @Override
     public String toString() {
-        return "UserLoginModel{" +
+        return "UserModel{" +
                 "id=" + id +
                 ", uname='" + uname + '\'' +
                 ", password='" + password + '\'' +

@@ -7,7 +7,7 @@
 <struts>
     <package name="userLogin" namespace="/" extends="web-default">
         <!--这个name是用到地址时使用如name!method.action-->
-        <action name="userLoginAction" class="com.pkk.action.UserLoginAction">
+        <action name="userLoginAction" class="com.pkk.action.login.UserLoginAction">
             <result name="success">pages/main.jsp</result>
             <result name="fail">pages/error.jsp</result>
             <result name="test">pages/test.jsp</result>

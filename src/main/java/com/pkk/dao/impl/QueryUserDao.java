@@ -1,6 +1,6 @@
 package com.pkk.dao.impl;
 
-import com.pkk.model.UserLoginModel;
+import com.pkk.model.UserModel;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +28,7 @@ public class QueryUserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public UserLoginModel findUserInFo() {
+	public UserModel findUserInFo() {
 
 		System.out.println("获取的结果为[sessionFactory]:" + sessionFactory);
 		return null;
