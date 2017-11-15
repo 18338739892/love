@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.pkk.dao.impl.QueryUserDao;
-import com.pkk.model.UserLoginModel;
+import com.pkk.model.UserModel;
 
 /**
  * @author peikunkun
@@ -31,7 +31,7 @@ public class QueryUserService {
 	}
 
 	@Transactional
-	public UserLoginModel findUserInfo() {
+	public UserModel findUserInfo() {
 
 		System.out.println("dao信息为" + queryUserDao);
 

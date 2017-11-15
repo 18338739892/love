@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @version V1.0
  * @Title: love
  * @Package com.pkk.base
- * @Description: <>
+ * @Description: <love项目基类>
  * @date 11/2 0002 15:06
  */
 public interface IPkkBaseModel extends Serializable {
@@ -17,8 +17,8 @@ public interface IPkkBaseModel extends Serializable {
 
     void setId(Integer id);
 
-    public void setInputdate(Timestamp inputdate);
+    void setInputdate(Timestamp inputdate);
 
-    public Timestamp getInputdate();
+    Timestamp getInputdate();
 
 }

@@ -311,11 +311,11 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="wd_guest_infobox">
-                        <h2>欢迎使用<span>爱情</span>系统</h2>
+                        <h2>欢迎使用爱情系统</h2>
                         <h4>请在使用前阅读一下文本</h4>
                         <p>本系统是给我最亲爱的国歌制作，以及使用，如果你在无意之间看到此网站，也可以使用此网站的功能，
                             谢绝盗用网站的资源，本网站归<span style="background-color:#0052A3">《昆仔科技快讯》</span>所有，违者必究。谢谢</p>
-                        <h2><span>用户  注册</span></h2>
+                        <h2>用户 注册</h2>
                         <p>如果你不是我亲爱的国歌的话，也是可以注册的，现在这个版本的是在开发中的，我会不断完善这个项目，给亲爱的国歌更好的体验，给用户
                             更好的体验，功能继续完善中......</p>
                     </div>
@@ -345,30 +345,31 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="wd_guest_formbox">
                         <span>注册或登录?</span>
                         <h4>赶快来吧!</h4>
 
 
-                        <form method="post" action="index.jsp">
+                        <form action=<%=contextPath%>"/userLoginAction!userLogin.action" id="form1" method="post">
                             <div class="wd_guest_form">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label>账号 :</label>
-                                        <input type="text" name="userlogin.uname">
+                                        <input type="text" name="userModel.uname">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label>密码 :</label>
-                                        <input type="text" name="userlogin.password">
+                                        <input type="text" name="userModel.password">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label>密钥 :</label>
-                                        <input type="text" name="userlogin.level">
+                                        <label>推荐码 :</label>
+                                        <input type="text" name="userModel.verifykey">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <label>级别 :</label>
-                                        <select>
+                                        <select name="userModel.level">
                                             <option value="0">爱人</option>
                                             <option value="1">朋友</option>
                                             <option value="2">游客</option>
@@ -376,14 +377,14 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="wd_btn">
-                                            <input type="submit" value="登录">
+                                            <input type="button" name="login" id="loginbutton" value="登录"/>
                                             <%--<a href="#">登录</a>--%>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="wd_btn">
                                             <%--<a href="#">注册</a>--%>
-                                                <input type="submit" value="注册">
+                                            <input type="button" name="register" id="registerbutton" value="注册"/>
                                         </div>
                                     </div>
                                 </div>
@@ -1019,13 +1020,15 @@
                 class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
         <div class="col-md-12">
             <div class="wd_footer_section">
-                <img src="images/header/flogo.png" alt="Logo" class="img-responsive">
+                <img src="../js/home/images/header/flogo.png" alt="Logo" class="img-responsive">
                 <p>Copyright &copy; 2017.昆仔科技快讯.<a target="_blank" href="#"></a>
                 </p>
             </div>
         </div>
     </div>
 </div>
+
+
 <!-- Footer Wrapper End -->
 <!--main js file start-->
 <script type="text/javascript" src="../js/home/js/jquery.js"></script>
@@ -1036,7 +1039,7 @@
 <script type="text/javascript" src="../js/home/js/jquery.magnific-popup.js"></script>
 <script type="text/javascript" src="../js/home/js/wow.js"></script>
 <script type="text/javascript" src="../js/home/js/custom.js"></script>
-<script>
+<script type="text/javascript">
     $(window).on("load", function () {
         var wow = new WOW({
             boxClass: 'wow',
@@ -1048,6 +1051,23 @@
         });
         wow.init();
     });
+
+
+    /*用户登录或注册的js*/
+    $(document).ready(function () {
+        $("#loginbutton").click(function () {
+            document.getElementById("form1").action = "../userLoginAction!userLogin.action";
+            $("#form1").submit();
+        });
+        $("#registerbutton").click(function () {
+            document.getElementById("form1").action = "../userLoginAction!testSuccess.action";
+            $("#form1").submit();
+        });
+
+
+    });
+
+
 </script>
 <!--main js file end-->
 </body>

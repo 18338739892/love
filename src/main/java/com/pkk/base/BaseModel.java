@@ -1,29 +1,31 @@
 package com.pkk.base;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
  * Created by peikunkun on 2017/10/22 0022.
  */
-public class BaseModel {
+public class BaseModel extends PkkBaseModel {
 
-    /**
-     * 创建时间【yyyyMMddHHmmss】
-     */
-    private Date createTime;
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    @Override
+    public Integer getId() {
+        return null;
     }
 
     @Override
-    public String toString() {
-        return "BaseModel{" +
-                "createTime=" + createTime +
-                '}';
+    public void setId(Integer id) {
+
+    }
+
+    @Override
+    public void setInputdate(Timestamp inputdate) {
+
+    }
+
+    @Override
+    public Timestamp getInputdate() {
+        return null;
     }
 }

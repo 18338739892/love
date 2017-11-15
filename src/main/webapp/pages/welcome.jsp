@@ -8,7 +8,7 @@
 </head>
 <body style="background-color: #ffffff; text-align: center; margin: 0 auto;">
 <div>
-    <img src="<%=contextPath%>/image/mainback/welcome.png" width="50%" style="margin-top: 7%;">
+    <img src="<%=contextPath%>/js/lib/style/images/login/welcome.png" width="50%" style="margin-top: 7%;">
 </div>
 </body>
 </html>

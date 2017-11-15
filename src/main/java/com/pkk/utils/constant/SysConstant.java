@@ -27,4 +27,7 @@ public class SysConstant {
      */
     public static final String HTTP_POST         = "post";
 
+
+    public static String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
+
 }
