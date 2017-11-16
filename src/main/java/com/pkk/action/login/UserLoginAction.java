@@ -7,8 +7,10 @@ import com.pkk.model.SysUser;
 import com.pkk.model.UserModel;
 import com.pkk.service.impl.QueryUserService;
 import com.pkk.utils.common.LoggerUtil;
+import com.pkk.utils.common.LoggerUtilMDC;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.net.SMTPAppender;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +24,7 @@ import javax.annotation.Resource;
  * @version V1.0
  * @Title: MyMavenProject
  * @Package com.pkk.action
- * @Description: <>
+ * @Description: <用户登录接口>
  * @date 10/9 0009 15:58
  */
 public class UserLoginAction extends BaseAction {
@@ -34,6 +36,8 @@ public class UserLoginAction extends BaseAction {
 
     @SuppressWarnings("unused")
     private static Logger logger = LoggerUtil.getLogger("这是个基本的输出配置信息", "userlogin");
+    private static Logger email  = LoggerUtil.getEmail("邮件输出基础信息");
+    private static Logger dblog  = LoggerUtil.getDataBaseLog("");
 
     private UserModel userModel;
 
@@ -58,35 +62,28 @@ public class UserLoginAction extends BaseAction {
 
     public String userLogin() {
 
-        String tomcatPath = System.getProperty("catalina.home");//Tomcat的路径
-
-        System.out.println(tomcatPath);
-
-        for (int i = 0; i < 100; i++) {
-            logger.info("测试邮件数据------------------------第" + i + "次");
-
-            try {
-                int i1 = 1 / 0;
-            } catch (Exception e) {
-                logger.error("测试邮件数据------------------------第" + i + "次");
-            }
-        }
-        System.out.println("Service为:" + queryUserService);
-
-        System.out.print("测试");
-
-        System.out.print("测试1");
-
         UserLoginAction userLoginAction = new UserLoginAction();
 
-        QueryUserService queryUserService = userLoginAction.getObject("queryUserService");
-        System.out.println("Service2为:" + queryUserService);
+        QueryUserService queryUserService = getObject("queryUserService");
+
         queryUserService.findUserInfo();
 
         System.out.println("用户的登录:" + userModel.toString());
+
         return "success";
     }
 
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return T
+     * @Description: <获取注入的实体[废弃]>
+     * @author peikunkun
+     * @date 2017年11/16 0016 15:02
+     * @version V1.0
+     * *************************************************************************
+     */
     public static <T> T getObject(T t) {
         String[] locations = {"applicationContext.xml"};
         ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
@@ -98,76 +95,24 @@ public class UserLoginAction extends BaseAction {
 
     }
 
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return com.pkk.service.impl.QueryUserService
+     * @Description: <<获取注入的实体[废弃]>>
+     * @author peikunkun
+     * @date 2017年11/16 0016 15:03
+     * @version V1.0
+     * *************************************************************************
+     */
     public static QueryUserService getObject(String name) {
+
         String[] locations = {"applicationContext.xml"};
         ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
 
         return (QueryUserService) ctx.getBean(name);
 
-    }
-
-    public String testSuccess() {
-
-        SysUser sysUserTest = new SysUser();
-        sysUserTest.setId(1);
-        sysUserTest.setRoleid(1);
-        Map session1 = super.getSession();
-
-
-        return "success";
-    }
-
-
-    public void TestLog4jSendMail() {
-
-        Logger logger = Logger.getLogger(UserLoginAction.class);
-        SMTPAppender appender = new SMTPAppender();
-        try {
-            appender.setSMTPUsername("peikunkun@newcapec.net");
-            appender.setSMTPPassword("As15938320850");
-            appender.setTo("656678879@qq.com");
-            appender.setFrom("peikunkun@newcapec.net");
-            // SMTP服务器 smtp.163.com
-            appender.setSMTPHost("smtp.newcapec.net");
-            appender.setLocationInfo(true);
-            appender.setSubject("Error Mail From Log4J");
-            appender.setLayout(new PatternLayout());
-            appender.activateOptions();
-            logger.addAppender(appender);
-            logger.error("Hello World");
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.info("Printing ERROR Statements", e);
-        }
-    }
-
-    public void TestLog4jSendMail1() {
-
-        Logger logger = Logger.getLogger(UserLoginAction.class);
-        SMTPAppender appender = new SMTPAppender();
-        try {
-            appender.setSMTPUsername("656678879@qq.com");
-            appender.setSMTPPassword("qbmolrppaahmbedb");
-            appender.setTo("kunzaikx@qq.com");
-            appender.setFrom("656678879@qq.com");
-            // SMTP服务器 smtp.163.com
-            appender.setSMTPHost("smtp.qq.com");
-            appender.setLocationInfo(true);
-            appender.setSubject("Error Mail From Log4J");
-            appender.setLayout(new PatternLayout());
-            appender.setSMTPPort(465);
-            appender.activateOptions();
-            logger.addAppender(appender);
-            logger.error("Hello World");
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.info("Printing ERROR Statements", e);
-        }
-    }
-
-
-    public static void main(String args[]) {
-        new UserLoginAction().TestLog4jSendMail1();
     }
 
 }

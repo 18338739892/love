@@ -1,5 +1,9 @@
 package com.pkk.utils.constant;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * @author peikunkun
  * @version V1.0
@@ -29,5 +33,42 @@ public class SysConstant {
 
 
     public static String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
+
+
+    public static String DB_URL    = "";
+    public static String DB_DRIVER = "";
+    public static String DB_USER   = "";
+    public static String DB_PWD    = "";
+
+
+    static {
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("love.properties");
+
+        if (inputStream != null) {
+            Properties properties = new Properties();
+            try {
+                properties.load(inputStream);
+                DB_URL = properties.getProperty("db.url");//数据库连接地址
+                DB_DRIVER = properties.getProperty("db.driverClassName");//数据库驱动地址
+                DB_USER = properties.getProperty("db.username");//数据库驱动地址
+                DB_PWD = properties.getProperty("db.password");//数据库驱动地址
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+
+    }
+
 
 }

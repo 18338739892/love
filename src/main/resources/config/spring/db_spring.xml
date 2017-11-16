@@ -13,7 +13,7 @@
 
 
     <!--加载本地的配置文件 -->
-    <context:property-placeholder location="classpath:db.properties"/>
+    <context:property-placeholder location="classpath:love.properties"/>
 
 
     <!--使用的方式@autowired等 -->
