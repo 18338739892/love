@@ -1,4 +1,4 @@
-package com.pkk.utils;
+package com.pkk.utils.encryption;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

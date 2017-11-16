@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.pkk.base.BaseService;
 import com.pkk.dao.impl.QueryUserDao;
 import com.pkk.model.UserModel;
 
@@ -17,28 +19,31 @@ import com.pkk.model.UserModel;
  */
 
 @Service(value = "queryUserService")
-public class QueryUserService {
+public class QueryUserService extends BaseService<UserModel> {
 
-	@Resource(name = "queryUserDao")
-	private QueryUserDao queryUserDao;
+    @Resource(name = "queryUserDao")
+    private QueryUserDao queryUserDao;
 
-	public QueryUserDao getQueryUserDao() {
-		return queryUserDao;
-	}
+    @Override
+    public QueryUserDao getQueryUserDao() {
+        return queryUserDao;
+    }
 
-	public void setQueryUserDao(QueryUserDao queryUserDao) {
-		this.queryUserDao = queryUserDao;
-	}
+    @Override
+    public void setQueryUserDao(QueryUserDao queryUserDao) {
+        this.queryUserDao = queryUserDao;
+    }
 
-	@Transactional
-	public UserModel findUserInfo() {
+    @Transactional
+    @Override
+    public UserModel findUserInfo() {
 
-		System.out.println("dao信息为" + queryUserDao);
+        System.out.println("dao信息为" + queryUserDao);
 
-		queryUserDao.findUserInFo();
+        queryUserDao.findUserInFo();
 
-		return null;
+        return null;
 
-	}
+    }
 
 }

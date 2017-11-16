@@ -35,9 +35,10 @@ public class UserLoginAction extends BaseAction {
     private static final long serialVersionUID = 1L;
 
     @SuppressWarnings("unused")
-    private static Logger logger = LoggerUtil.getLogger("这是个基本的输出配置信息", "userlogin");
-    private static Logger email  = LoggerUtil.getEmail("邮件输出基础信息");
-    private static Logger dblog  = LoggerUtil.getDataBaseLog("");
+    private static String logInfo = "-[用户登录操作]-";
+    private static Logger logger  = LoggerUtil.getLogger(logInfo, "userlogin");
+    private static Logger email   = LoggerUtil.getEmail(logInfo);
+    private static Logger dblog   = LoggerUtil.getDataBaseLog(logInfo);
 
     private UserModel userModel;
 
@@ -61,15 +62,9 @@ public class UserLoginAction extends BaseAction {
     }
 
     public String userLogin() {
-
-        UserLoginAction userLoginAction = new UserLoginAction();
-
-        QueryUserService queryUserService = getObject("queryUserService");
-
+        LoggerUtilMDC.putName(userModel.getUname());//记录用户名[日志]
+        dblog.info("用户进行登录操作");
         queryUserService.findUserInfo();
-
-        System.out.println("用户的登录:" + userModel.toString());
-
         return "success";
     }
 
@@ -85,6 +80,8 @@ public class UserLoginAction extends BaseAction {
      * *************************************************************************
      */
     public static <T> T getObject(T t) {
+
+
         String[] locations = {"applicationContext.xml"};
         ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
         System.out.println(t.getClass().getName());

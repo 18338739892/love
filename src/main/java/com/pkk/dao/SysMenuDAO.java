@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.pkk.base.BaseDao;
+import com.pkk.base.BaseDAO;
 import com.pkk.model.SysMenu;
 
 /**
@@ -18,7 +18,7 @@ import com.pkk.model.SysMenu;
  */
 @SuppressWarnings("unchecked")
 @Repository
-public class SysMenuDAO extends BaseDao<SysMenu> {
+public class SysMenuDAO extends BaseDAO<SysMenu> {
 
     private Logger logger = Logger.getLogger(SysMenuDAO.class);
 

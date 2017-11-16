@@ -1,15 +1,20 @@
 package com.pkk.base;
 
+import com.alibaba.fastjson.JSONObject;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pkk.utils.condition.PageCondition;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.json.annotations.JSON;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -22,15 +27,22 @@ import java.util.Map;
  */
 public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware, SessionAware {
 
-
-    public HttpServletRequest  servletRequest;// request对象
-    public HttpServletResponse servletResponse;// response对象
-    public int                 page;//第几页
-    public int                 rows;//每页显示的总条数
-    public String              sort;//排序字段
-    public String              order;//排序顺序
-    public PageCondition       pageCondition;//分页封装类
-    public Map                 session;//session对象
+    // request对象
+    public HttpServletRequest  servletRequest;
+    // response对象
+    public HttpServletResponse servletResponse;
+    //第几页
+    public int                 page;
+    //每页显示的总条数
+    public int                 rows;
+    //排序字段
+    public String              sort;
+    //排序顺序
+    public String              order;
+    //分页封装类
+    public PageCondition       pageCondition;
+    //session对象
+    public Map                 session;
 
 
     public HttpServletRequest getServletRequest() {
@@ -91,6 +103,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
         return session;
     }
 
+    @Override
     public void setSession(Map session) {
         this.session = session;
     }
@@ -106,4 +119,25 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
         pageCondition.setSortorder(order);
         return pageCondition;
     }
+
+    /**
+     * 功能描述：将对象转换成JSON字符串，并响应回前台
+     * 时间：2014年9月11日
+     *
+     * @param object
+     * @author ：lirenbo
+     */
+    public void writeJson(Object object) {
+        try {
+            String json = JSONObject.toJSONString(object);
+            servletResponse.setContentType("text/html;charset=utf-8");
+            servletResponse.getWriter().write(json);
+            servletResponse.getWriter().flush();
+            servletResponse.getWriter().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
