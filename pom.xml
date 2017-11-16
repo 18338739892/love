@@ -169,6 +169,18 @@
             <version>${mysql.version}</version>
         </dependency>
 
+        <!--servlet环境依赖-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!--ali的jsonObject-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.4</version>
+        </dependency>
     </dependencies>
 
 </project>

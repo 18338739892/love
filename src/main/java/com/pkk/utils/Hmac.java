@@ -9,7 +9,6 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.binary.Hex;
 
 /**
  * @author peikunkun
