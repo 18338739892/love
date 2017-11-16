@@ -60,4 +60,9 @@
     </context-param>
 
 
+    <!--session的有效期30分钟-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
 </web-app>

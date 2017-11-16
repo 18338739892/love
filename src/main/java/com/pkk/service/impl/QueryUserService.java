@@ -34,16 +34,5 @@ public class QueryUserService extends BaseService<UserModel> {
         this.queryUserDao = queryUserDao;
     }
 
-    @Transactional
-    @Override
-    public UserModel findUserInfo() {
-
-        System.out.println("dao信息为" + queryUserDao);
-
-        queryUserDao.findUserInFo();
-
-        return null;
-
-    }
 
 }

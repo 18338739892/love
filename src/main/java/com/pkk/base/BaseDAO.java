@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.pkk.model.UserModel;
 import com.pkk.utils.condition.Page;
 
 /**
@@ -44,6 +45,10 @@ public class BaseDAO<T> implements IBaseDAO<T> {
         return l;
     }
 
+    @Override
+    public Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public Integer save(Object entity) {
@@ -122,6 +127,12 @@ public class BaseDAO<T> implements IBaseDAO<T> {
 
     @Override
     public List findByHql(String hql, String params, Object values) {
+
+
+        UserModel userModel = getSession().get(UserModel.class, 1);
+        System.out.println("Dao层的获取的数据:" + userModel.toString());
+
+
         return null;
     }
 

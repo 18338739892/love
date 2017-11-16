@@ -108,7 +108,7 @@ public class LoggerUtil {
         //发送日志到指定邮箱中
         SMTPAppender smtpAppender = new SMTPAppender();
         smtpAppender.setThreshold(Priority.INFO);//发送邮件的门槛，仅当等于或高于ERROR（比如FATAL）时，邮件才被发送
-        smtpAppender.setBufferSize(1 * 1204 * 1024);//缓存文件大小，日志达到30k时发送Email
+        smtpAppender.setBufferSize(1 * 1204 * 1024);//缓存文件大小，日志达到1兆时发送Email
         smtpAppender.setFrom("kunzaikx@aliyun.com");//发送邮件的邮箱帐号
         smtpAppender.setSMTPUsername("kunzaikx@aliyun.com");//SMTP发送认证的帐号名
         smtpAppender.setSMTPPassword("kunzaikxadmin1");//SMTP发送认证帐号搜索的密码

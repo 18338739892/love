@@ -3,6 +3,8 @@ package com.pkk.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Session;
+
 import com.pkk.utils.condition.Page;
 
 /**
@@ -15,6 +17,8 @@ import com.pkk.utils.condition.Page;
  */
 public interface PkkDAO extends Serializable {
 
+
+    Session getSession();
 
     Integer save(Object entity);
 

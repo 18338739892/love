@@ -361,7 +361,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label>密码 :</label>
-                                        <input type="text" name="userModel.password">
+                                        <input type="password" name="userModel.password">
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <label>推荐码 :</label>

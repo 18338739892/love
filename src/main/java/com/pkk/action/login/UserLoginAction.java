@@ -1,11 +1,14 @@
 package com.pkk.action.login;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.pkk.base.BaseAction;
 import com.pkk.model.SysUser;
 import com.pkk.model.UserModel;
 import com.pkk.service.impl.QueryUserService;
+import com.pkk.service.login.UserLoginService;
 import com.pkk.utils.common.LoggerUtil;
 import com.pkk.utils.common.LoggerUtilMDC;
 
@@ -34,24 +37,21 @@ public class UserLoginAction extends BaseAction {
      */
     private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
-    private static String logInfo = "-[用户登录操作]-";
-    private static Logger logger  = LoggerUtil.getLogger(logInfo, "userlogin");
-    private static Logger email   = LoggerUtil.getEmail(logInfo);
-    private static Logger dblog   = LoggerUtil.getDataBaseLog(logInfo);
 
     private UserModel userModel;
 
-    @Resource(name = "queryUserService")
-    private QueryUserService queryUserService;
 
-    public QueryUserService getQueryUserService() {
-        return queryUserService;
+    @Resource
+    private UserLoginService userLoginService;
+
+    public UserLoginService getUserLoginService() {
+        return userLoginService;
     }
 
-    public void setQueryUserService(QueryUserService queryUserService) {
-        this.queryUserService = queryUserService;
+    public void setUserLoginService(UserLoginService userLoginService) {
+        this.userLoginService = userLoginService;
     }
+
 
     public UserModel getUserModel() {
         return userModel;
@@ -61,11 +61,23 @@ public class UserLoginAction extends BaseAction {
         this.userModel = userModel;
     }
 
-    public String userLogin() {
-        LoggerUtilMDC.putName(userModel.getUname());//记录用户名[日志]
-        dblog.info("用户进行登录操作");
-        queryUserService.findUserInfo();
-        return "success";
+    public void userLogin() {
+
+        boolean result = userLoginService.UserLogin(userModel);
+        HashMap<String, String> map = new HashMap<>();
+        if (result) {
+            map.put("key", "成功");
+            map.put("meg", "密码正确");
+
+            writeJson(map);
+
+        } else {
+            map.put("key", "失败");
+            map.put("meg", "密码错误");
+
+            writeJson(map);
+        }
+//        return "success";
     }
 
     /**

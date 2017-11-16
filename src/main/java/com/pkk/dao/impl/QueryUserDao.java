@@ -1,6 +1,8 @@
 package com.pkk.dao.impl;
 
+import com.pkk.base.BaseDAO;
 import com.pkk.model.UserModel;
+
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -14,24 +16,24 @@ import javax.annotation.Resource;
  * @Description: <>
  * @date 10/9 0009 20:50
  */
-@Repository(value = "queryUserDao")
-public class QueryUserDao {
+@Repository
+public class QueryUserDao extends BaseDAO<UserModel> {
 
-	@Resource(name = "sessionFactory")
-	private SessionFactory sessionFactory;
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return com.pkk.model.UserModel
+     * @Description: <查询用户信息>
+     * @author peikunkun
+     * @date 2017年11/16 0016 19:50
+     * @version V1.0
+     * *************************************************************************
+     */
+    public UserModel findUserInFo(UserModel userModel) {
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	public UserModel findUserInFo() {
-
-		System.out.println("获取的结果为[sessionFactory]:" + sessionFactory);
-		return null;
-	}
+        String hql = "from UserModel where uname=? and password=? and level=?";
+        return (UserModel) super.getSession().createQuery(hql).setParameter(0, userModel.getUname()).setParameter(1, userModel.getPassword()).setParameter(2, userModel.getLevel()).list().get(0);
+    }
 
 }

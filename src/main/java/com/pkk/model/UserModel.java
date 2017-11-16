@@ -25,10 +25,12 @@ public class UserModel extends BaseModel {
     @Id
     @GeneratedValue
     @Column(name = "id")
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

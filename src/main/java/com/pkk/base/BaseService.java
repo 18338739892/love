@@ -19,7 +19,7 @@ import com.pkk.model.UserModel;
 @Service
 public class BaseService<T> {
 
-    @Resource(name = "queryUserDao")
+    @Resource
     private QueryUserDao queryUserDao;
 
     public QueryUserDao getQueryUserDao() {
@@ -28,17 +28,6 @@ public class BaseService<T> {
 
     public void setQueryUserDao(QueryUserDao queryUserDao) {
         this.queryUserDao = queryUserDao;
-    }
-
-    @Transactional
-    public UserModel findUserInfo() {
-
-        System.out.println("dao信息为" + queryUserDao);
-
-        queryUserDao.findUserInFo();
-
-        return null;
-
     }
 
 
