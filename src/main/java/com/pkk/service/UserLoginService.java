@@ -12,6 +12,7 @@ import com.pkk.service.QueryUserService;
 import com.pkk.utils.StringUtils;
 import com.pkk.utils.common.LoggerUtil;
 import com.pkk.utils.common.LoggerUtilMDC;
+import com.pkk.utils.encryption.MD5Util;
 
 /**
  * @author peikunkun
@@ -44,20 +45,45 @@ public class UserLoginService extends BaseService<UserModel> {
         this.queryUserService = queryUserService;
     }
 
-
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return boolean
+     * @Description: <用户登录>
+     * @author peikunkun
+     * @date 2017年11/17 0017 16:57
+     * @version V1.0
+     * *************************************************************************
+     */
     public boolean UserLogin(UserModel userModel) {
-        LoggerUtilMDC.putName(userModel.getUname());//记录用户名[日志]
-        dblog.info("用户进行登录操作");
-        email.error("用户名:" + userModel.getUname() + "-于" + StringUtils.getDateStr() + "进行登录操作");//发送邮件
-        UserModel userModel1 = queryUserDao.findUserInFo(userModel);
 
+
+        if (userModel == null) {
+            return false;
+        }
+        //Md5加密
+        userModel.setPassword(MD5Util.md5(userModel.getPassword()));
+        UserModel userModel1 = queryUserDao.findUserInFo(userModel);
         if (userModel1 == null) {
             return false;
         } else {
+            LoggerUtilMDC.putName(userModel.getUname());//记录用户名[日志]
+            dblog.info("用户进行登录操作");
+            email.error("用户名:" + userModel.getUname() + "-于" + StringUtils.getDateStr() + "进行登录操作");//发送邮件
             return true;
         }
 
     }
 
 
+    public boolean verifyUser(UserModel userModel) {
+
+        String result = queryUserDao.verifyUser(userModel);
+        if (result == null || result.length() <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

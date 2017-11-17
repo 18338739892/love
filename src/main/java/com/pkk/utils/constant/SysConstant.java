@@ -17,22 +17,39 @@ public class SysConstant {
     /**
      * 字符集【UTF-8】
      */
-    public static final String CHARSET_UTF8      = "UTF-8";
+    public static final String CHARSET_UTF8        = "UTF-8";
     /**
      * 24小时时间格式
      */
-    public static final String DATEFORMAT_24HOUR = "yyyyMMddHHmmss";
+    public static final String DATEFORMAT_24HOUR   = "yyyyMMddHHmmss";
     /**
      * 请求方式[get]
      */
-    public static final String HTTP_GET          = "get";
+    public static final String HTTP_GET            = "get";
     /**
      * 请求方式[post]
      */
-    public static final String HTTP_POST         = "post";
-
-
-    public static String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String HTTP_POST           = "post";
+    /**
+     * 时间的格式[标准版]
+     */
+    public static final String DATEFORMAT          = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 返回的状态码
+     */
+    public static final String RETURN_CODE         = "code";
+    /**
+     * 返回的描述信息
+     */
+    public static final String RETURN_MSG          = "msg";
+    /**
+     * 状态成功
+     */
+    public static final String RETURN_CODE_SUCCESS = "success";
+    /**
+     * 状态失败
+     */
+    public static final String RETURN_CODE_ERROR   = "error";
 
 
     public static String DB_URL    = "";

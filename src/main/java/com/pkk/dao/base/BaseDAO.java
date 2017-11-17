@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -48,6 +50,38 @@ public class BaseDAO<T> implements IBaseDAO<T> {
         return l;
     }
 
+
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return java.lang.String
+     * @Description: <根据参数进行拼装参数语句>
+     * @author peikunkun
+     * @date 2017年11/17 0017 18:33
+     * @version V1.0
+     * *************************************************************************
+     */
+    @Override
+    public String setParamString(List<String> params, List<Object> values) {
+
+
+        return null;
+    }
+
+    @Override
+    public String setParamString(String[] params, Object[] values) {
+        return null;
+    }
+
+    @Override
+    public void setParamString(SQLQuery sqlQuery, String[] params, Object[] values) {
+    }
+
+    @Override
+    public String setParamString(Query query) {
+        return null;
+    }
 
     @Override
     public Integer save(Object entity) {
@@ -160,9 +194,16 @@ public class BaseDAO<T> implements IBaseDAO<T> {
         return false;
     }
 
+
     @Override
     public List getByPropertySql(String sql, String params, Object values) {
+        Object object = getSession().createSQLQuery(sql).setParameter(0, values).uniqueResult();
         return null;
+    }
+
+    public Object getByPropertySql(String sql, Object values) {
+        Object object = getSession().createSQLQuery(sql).setParameter(0, values).uniqueResult();
+        return object;
     }
 
     @Override

@@ -3,6 +3,9 @@ package com.pkk.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+
 import com.pkk.model.base.IPkkBaseModel;
 import com.pkk.utils.condition.Page;
 
@@ -17,12 +20,19 @@ import com.pkk.utils.condition.Page;
 public interface PkkDAO extends Serializable {
 
 
+    String setParamString(List<String> params, List<Object> values);
+
+    String setParamString(String[] params, Object[] values);
+
+    void setParamString(SQLQuery sqlQuery, String[] params, Object[] values);
+
+    String setParamString(Query query);
+
     Integer save(Object entity);
 
     void saves(List entityList);
 
     void update(Object entity);
-
 
     void update(Object entity, Object get);
 

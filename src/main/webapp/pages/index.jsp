@@ -357,24 +357,54 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label>账号 :</label>
-                                        <input type="text" name="userModel.uname">
+                                        <input type="text" name="userModel.uname" id="username">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label>密码 :</label>
-                                        <input type="password" name="userModel.password">
+                                        <input type="password" name="userModel.password" id="password">
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label>推荐码 :</label>
-                                        <input type="text" name="userModel.verifykey">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label>级别 :</label>
-                                        <select name="userModel.level">
-                                            <option value="0">爱人</option>
-                                            <option value="1">朋友</option>
-                                            <option value="2">游客</option>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label>类型 :</label>
+                                        <select name="userModel.level" id="level">
+                                            <option value="0">管理员</option>
+                                            <option value="1" selected="selected">爱人</option>
+                                            <option value="2">朋友</option>
+                                            <option value="3">游客</option>
                                         </select>
                                     </div>
+
+                                    <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>性别 :</label>
+                                        <select name="userModel.sex" id="sex">
+                                            <option value="0">男</option>
+                                            <option value="1" selected="selected">女</option>
+                                        </select>
+                                    </div>--%>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>验证码 :</label>
+                                        <input type="text" name="userModel.verifykey" id="verifykey">
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <img name="imgRandom" id="imgRandom"
+                                             src="<%=contextPath%>/userLoginAction!scaptcha.action"
+                                             onclick="this.src='<%=contextPath%>/userLoginAction!scaptcha.action?random='+ Math.random();">
+                                    </div>
+
+
+                                    <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <label>级别 :</label>
+                                        <select name="userModel.level" id="level">
+                                            <option value="0">管理员</option>
+                                            <option value="1" selected="selected">爱人</option>
+                                            <option value="2">朋友</option>
+                                            <option value="3">游客</option>
+                                        </select>
+                                    </div>--%>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="wd_btn">
                                             <input type="button" name="login" id="loginbutton" value="登录"/>
@@ -390,7 +420,6 @@
                                 </div>
                             </div>
                         </form>
-
 
                     </div>
                 </div>
@@ -1055,9 +1084,91 @@
 
     /*用户登录或注册的js*/
     $(document).ready(function () {
+
+        $("#username").blur(function () {
+            var username = $("#username").val();
+            if (username == null || username.length <= 0) {
+                alert("请输入用户名");
+                return;
+            }
+            $.ajax({
+                url: '<%=contextPath%>/userLoginAction!verifyUser.action',
+                type: 'post',
+                dataType: "json",
+                async: false,//取消异步通知
+                data: {'userModel.uname': username},
+                error: function (data) {
+                    $("#username").val("登录异常");
+                    return;
+                },
+                success: function (data) {
+                    if (data.message == 'isNotExist') {
+                        $("#username").css("color", "red");
+                        $("#username").val(username + "←---用户不存在");
+                        return;
+                    }
+                }
+
+            });
+
+        });
+
+
         $("#loginbutton").click(function () {
-            document.getElementById("form1").action = "../userLoginAction!userLogin.action";
-            $("#form1").submit();
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var verifykey = $("#verifykey").val();
+            var level = $("#level").val();
+
+
+            if (username == null || username.length <= 0) {
+                alert("请输入用户名")
+                return;
+            }
+            if (password == null || password.length <= 0) {
+                alert("请输入密码")
+                return;
+            }
+            if (verifykey == null || verifykey.length <= 0) {
+                alert("请输入验证码")
+                return;
+            }
+            if (level == null || level.length <= 0) {
+                alert("请输入类型")
+                return;
+            }
+
+                $.ajax({
+                    url: '<%=contextPath%>/userLoginAction!userLogin.action',
+                    type: 'post',
+                    dataType: "json",
+                    async: false,//取消异步通知
+                    data: {
+                        'userModel.uname': username,
+                        'userModel.password': password,
+                        'userModel.verifykey': verifykey,
+                        'userModel.level': level
+                    },
+                    error: function (data) {
+                        $("#username").val("登录异常");
+                        return;
+                    },
+                    success: function (data) {
+                        if (data.code == 'success') {
+                            $("#password").css("color", "red");
+                            $("#password").val("密码错误");
+                            return;
+                        } else {
+                            window.location.replace('<%=contextPath%>/userLoginAction!userLogin.action');
+//                            document.getElementById("form1").action = "../userLoginAction!userLogin.action";
+                        }
+                    }
+
+                });
+
+
+            /*$("#imgRandom").click();*/
+
         });
         $("#registerbutton").click(function () {
             document.getElementById("form1").action = "../userLoginAction!testSuccess.action";

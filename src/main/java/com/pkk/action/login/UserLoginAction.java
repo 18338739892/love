@@ -1,16 +1,22 @@
 package com.pkk.action.login;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import com.pkk.model.UserModel;
 import com.pkk.action.base.BaseAction;
 import com.pkk.service.QueryUserService;
 import com.pkk.service.UserLoginService;
+import com.pkk.utils.CookieUtil;
+import com.pkk.utils.ValidateCode;
+import com.pkk.utils.constant.SysConstant;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author peikunkun
@@ -56,16 +62,73 @@ public class UserLoginAction extends BaseAction {
         boolean result = userLoginService.UserLogin(userModel);
         HashMap<String, String> map = new HashMap<>();
         if (result) {
-            map.put("key", "成功");
-            map.put("meg", "密码正确");
+            map.put(SysConstant.RETURN_CODE, SysConstant.RETURN_CODE_SUCCESS);
+            map.put(SysConstant.RETURN_MSG, "密码正确");
             writeJson(map);
 
         } else {
-            map.put("key", "失败");
-            map.put("meg", "密码错误");
+            map.put(SysConstant.RETURN_CODE, SysConstant.RETURN_CODE_ERROR);
+            map.put(SysConstant.RETURN_MSG, "密码错误");
             writeJson(map);
         }
     }
+
+
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return void
+     * @Description: <验证用户是否存在>
+     * @author peikunkun
+     * @date 2017年11/17 0017 18:52
+     * @version V1.0
+     * *************************************************************************
+     */
+    public void verifyUser() {
+
+        boolean result = userLoginService.verifyUser(userModel);
+
+        HashMap<String, String> returnMsg = new HashMap<>();
+        if (result) {
+            returnMsg.put("message", "SUCCESS");
+        } else {
+            returnMsg.put("message", "isNotExist");
+        }
+        writeJson(returnMsg);
+    }
+
+
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return void
+     * @Description: <验证码>
+     * @author peikunkun
+     * @date 2017年11/17 0017 16:53
+     * @version V1.0
+     * *************************************************************************
+     */
+    public void scaptcha() {
+
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.reset();
+        // 设置响应的类型格式为图片格式
+        response.setContentType("image/jpeg");
+        // 禁止图像缓存。
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        ValidateCode instance = new ValidateCode();
+        CookieUtil.setCookie(response, "scaptcha", instance.getCode().toUpperCase(), null, -1);
+        try {
+            instance.write(response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * *************************************************************************
