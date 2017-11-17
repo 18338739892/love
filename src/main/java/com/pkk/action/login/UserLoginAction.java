@@ -68,7 +68,6 @@ public class UserLoginAction extends BaseAction {
         if (result) {
             map.put("key", "成功");
             map.put("meg", "密码正确");
-
             writeJson(map);
 
         } else {
