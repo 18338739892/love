@@ -1,4 +1,4 @@
-package com.pkk.base;
+package com.pkk.service;
 
 import javax.annotation.Resource;
 
@@ -12,14 +12,13 @@ import com.pkk.model.UserModel;
  * @author peikunkun
  * @version V1.0
  * @Title: love
- * @Package com.pkk.base
+ * @Package com.pkk.action.base
  * @Description: <>
  * @date 11/2 0002 13:27
  */
-@Service
 public class BaseService<T> {
 
-    @Resource
+    @Resource(name = "queryUserDao")
     private QueryUserDao queryUserDao;
 
     public QueryUserDao getQueryUserDao() {

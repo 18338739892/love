@@ -1,14 +1,14 @@
-package com.pkk.service.login;
+package com.pkk.service;
 
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.pkk.base.BaseService;
+import com.pkk.service.BaseService;
 import com.pkk.dao.impl.QueryUserDao;
 import com.pkk.model.UserModel;
-import com.pkk.service.impl.QueryUserService;
+import com.pkk.service.QueryUserService;
 import com.pkk.utils.StringUtils;
 import com.pkk.utils.common.LoggerUtil;
 import com.pkk.utils.common.LoggerUtilMDC;
@@ -21,7 +21,7 @@ import com.pkk.utils.common.LoggerUtilMDC;
  * @Description: <>
  * @date 11/16 0016 18:20
  */
-@Service
+@Service(value = "userLoginService")
 public class UserLoginService extends BaseService<UserModel> {
 
     @SuppressWarnings("unused")
@@ -33,7 +33,7 @@ public class UserLoginService extends BaseService<UserModel> {
 
     @Resource(name = "queryUserService")
     private QueryUserService queryUserService;
-    @Resource
+    @Resource(name = "queryUserDao")
     private QueryUserDao     queryUserDao;
 
     public QueryUserService getQueryUserService() {
@@ -49,7 +49,6 @@ public class UserLoginService extends BaseService<UserModel> {
         LoggerUtilMDC.putName(userModel.getUname());//记录用户名[日志]
         dblog.info("用户进行登录操作");
         email.error("用户名:" + userModel.getUname() + "-于" + StringUtils.getDateStr() + "进行登录操作");//发送邮件
-
         UserModel userModel1 = queryUserDao.findUserInFo(userModel);
 
         if (userModel1 == null) {

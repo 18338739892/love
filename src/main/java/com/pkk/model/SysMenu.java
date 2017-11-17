@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.pkk.base.PkkBaseModel;
+import com.pkk.model.base.PkkBaseModel;
 
 /**
  * @author peikunkun

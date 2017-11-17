@@ -1,4 +1,4 @@
-package com.pkk.base;
+package com.pkk.dao.base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +8,16 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.pkk.model.base.IPkkBaseModel;
 import com.pkk.model.UserModel;
 import com.pkk.utils.condition.Page;
 
 /**
  * Created by peikunkun on 2017/10/22 0022.
  */
-@Repository
+/*基于jdk的事务代理，只可以放在类上有效，放在接口上需使用CGLiB代理方式*/
 public class BaseDAO<T> implements IBaseDAO<T> {
 
     @Resource(name = "sessionFactory")
@@ -25,9 +27,12 @@ public class BaseDAO<T> implements IBaseDAO<T> {
         return sessionFactory;
     }
 
-
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    public Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
@@ -38,17 +43,11 @@ public class BaseDAO<T> implements IBaseDAO<T> {
     @Override
     public <T extends IPkkBaseModel> List getByPropertySqls(String sql, String[] params, Object[] values,
                                                             Class<T> clazz) {
-        Session session = sessionFactory.openSession();
-
 
         List l = new ArrayList();
         return l;
     }
 
-    @Override
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
 
     @Override
     public Integer save(Object entity) {

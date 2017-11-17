@@ -21,6 +21,8 @@
         <activation.version>1.1</activation.version>
         <c3p0.version>0.9.1.1</c3p0.version>
         <mysql.version>5.1.38</mysql.version>
+        <servlet.version>2.5</servlet.version>
+        <alibabajson.version>1.2.4</alibabajson.version>
     </properties>
 
 
@@ -173,13 +175,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <version>${servlet.version}</version>
         </dependency>
         <!--ali的jsonObject-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.4</version>
+            <version>${alibabajson.version}</version>
         </dependency>
     </dependencies>
 

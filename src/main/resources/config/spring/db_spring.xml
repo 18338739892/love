@@ -16,12 +16,16 @@
     <context:property-placeholder location="classpath:love.properties"/>
 
 
-    <!--使用的方式@autowired等 -->
+    <!-- 打开Spring的Annotation支持 -->
     <context:annotation-config/>
 
-    <!-- <aop:aspectj-autoproxy /> -->
+    <!--Spring如果在实体类上继承接口，Spring默认就会采用接口代理模式[jdk]代理-下面这样就会采用类代理模式GGLlB-->
+    <!--Spring团队建议在具体的类（或类的方法）上使用 @Transactional 注解，而不要使用在类所要实现的任何接口上。在接口上使用 @Transactional 注解，只能当你设置了基于接口的代理时它才生效。因为注解是 不能继承 的，这就意味着如果正在使用基于类的代理时，那么事务的设置将不能被基于类的代理所识别，而且对象也将不会被事务代理所包装。-->
+    <!--<aop:aspectj-autoproxy/>-->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
 
+    <!-- 设定Spring 去哪些包中找Annotation -->
     <!--要扫描的包,作用在上面config多一点 --><!-- 注解的自动扫描，表示组件（如：@controler，@Service，@Repository，@Resource等）的扫描 ,注册到spring容器中 -->
     <context:component-scan base-package="com.pkk">
         <context:include-filter type="annotation"
@@ -31,7 +35,6 @@
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <!-- <context:component-scan base-package="/" /> -->
 
     <!-- 数据库连接池c3p0配置 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -47,14 +50,19 @@
     </bean>
 
 
+    <!--Spring已经不推荐使用hibernateTemplate，和继承HibernateSupport-->
+    <!--<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>-->
+
     <!-- 创建由spring提供的sessionFactory，这是spring整合hibernate的核心 -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--自动扫描进行实体的映射 -->
+        <!-- 自动扫描注解方式配置的hibernate类文件 -->
         <property name="packagesToScan">
             <list>
-                <value>com.pkk.model</value>
+                <value>com.pkk.model.**</value>
             </list>
         </property>
 
@@ -80,6 +88,9 @@
 
     <!-- 使用注解的形式管理事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--采用代理模式，详细讲解见上面-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
+
 
     <!-- 配置事务通知属性 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -99,9 +110,19 @@
         </tx:attributes>
     </tx:advice>
 
+
+    <!--<aop:config>是告诉spring在哪个地方需要使用事务配置，称之为pointcut，切入点
+    advisor是告诉spring在切入点的地方启用哪种事务配置，启用的是Hibernate的事务配置。
+    tx:advice是配置事务的传播性，对保存更新删除操作需要事务，其它方法是只读通知。-->
     <!-- 配置事务切面 -->
     <aop:config>
+        <!-- 只对业务逻辑层实施事务 -->
+        <!--1、第一个*代表所有的返回值类型 -->
+        <!--1、第二个*代表所有的类 -->
+        <!--1、第三个*代表类所有方法 -->
+        <!--1、最后一个..代表所有的参数 -->
         <aop:pointcut id="pointCut" expression="execution(* com.pkk.service.*.*(..))"/>
+        <!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
         <aop:advisor pointcut-ref="pointCut" advice-ref="txAdvice"/>
     </aop:config>
 </beans>

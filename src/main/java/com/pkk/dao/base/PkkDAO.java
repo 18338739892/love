@@ -1,24 +1,21 @@
-package com.pkk.base;
+package com.pkk.dao.base;
 
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
-
+import com.pkk.model.base.IPkkBaseModel;
 import com.pkk.utils.condition.Page;
 
 /**
  * @author peikunkun
  * @version V1.0
  * @Title: love
- * @Package com.pkk.base
+ * @Package com.pkk.action.base
  * @Description: <(对DAO层的简单封装，不做更为复杂的封装，只求达到某些方法的共用即可) >
  * @date 11/16 0016 17:45
  */
 public interface PkkDAO extends Serializable {
 
-
-    Session getSession();
 
     Integer save(Object entity);
 

@@ -1,4 +1,4 @@
-package com.pkk.base;
+package com.pkk.model.base;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * @author peikunkun
  * @version V1.0
  * @Title: love
- * @Package com.pkk.base
+ * @Package com.pkk.action.base
  * @Description: <love项目基类>
  * @date 11/2 0002 15:06
  */

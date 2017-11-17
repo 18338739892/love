@@ -9,7 +9,7 @@ package com.pkk.model;
  * @date 10/9 0009 15:56
  */
 
-import com.pkk.base.BaseModel;
+import com.pkk.model.base.BaseModel;
 
 import javax.persistence.*;
 
@@ -21,6 +21,9 @@ public class UserModel extends BaseModel {
     private String  password;
     private String  level;
     private String  verifykey;
+    private String  dsc;
+    private String  sex;
+    private String  age;
 
     @Id
     @GeneratedValue
@@ -35,7 +38,7 @@ public class UserModel extends BaseModel {
         this.id = id;
     }
 
-    @Column
+    @Column(name = "uname")
     public String getUname() {
         return uname;
     }
@@ -53,7 +56,7 @@ public class UserModel extends BaseModel {
         this.level = level;
     }
 
-    @Column
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -62,13 +65,41 @@ public class UserModel extends BaseModel {
         this.password = password;
     }
 
-    @Column
+    @Column(name = "verifykey")
     public String getVerifykey() {
         return verifykey;
     }
 
     public void setVerifykey(String verifykey) {
         this.verifykey = verifykey;
+    }
+
+
+    @Column(name = "dsc")
+    public String getDsc() {
+        return dsc;
+    }
+
+    public void setDsc(String dsc) {
+        this.dsc = dsc;
+    }
+
+    @Column(name = "sex")
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Column(name = "age")
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     @Override

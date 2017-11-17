@@ -1,7 +1,6 @@
-package com.pkk.base;
+package com.pkk.model.base;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by peikunkun on 2017/10/22 0022.

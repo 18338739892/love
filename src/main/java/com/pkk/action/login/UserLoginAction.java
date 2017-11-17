@@ -1,24 +1,14 @@
 package com.pkk.action.login;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Map;
 
-import com.pkk.base.BaseAction;
-import com.pkk.model.SysUser;
 import com.pkk.model.UserModel;
-import com.pkk.service.impl.QueryUserService;
-import com.pkk.service.login.UserLoginService;
-import com.pkk.utils.common.LoggerUtil;
-import com.pkk.utils.common.LoggerUtilMDC;
+import com.pkk.action.base.BaseAction;
+import com.pkk.service.QueryUserService;
+import com.pkk.service.UserLoginService;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
-import org.apache.log4j.PatternLayout;
-import org.apache.log4j.net.SMTPAppender;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
@@ -73,10 +63,8 @@ public class UserLoginAction extends BaseAction {
         } else {
             map.put("key", "失败");
             map.put("meg", "密码错误");
-
             writeJson(map);
         }
-//        return "success";
     }
 
     /**
@@ -107,7 +95,7 @@ public class UserLoginAction extends BaseAction {
      * *************************************************************************
      *
      * @param
-     * @return com.pkk.service.impl.QueryUserService
+     * @return com.pkk.service.QueryUserService
      * @Description: <<获取注入的实体[废弃]>>
      * @author peikunkun
      * @date 2017年11/16 0016 15:03

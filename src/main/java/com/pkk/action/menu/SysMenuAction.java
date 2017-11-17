@@ -1,13 +1,10 @@
 package com.pkk.action.menu;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Controller;
-
-import com.pkk.base.BaseAction;
+import com.pkk.action.base.BaseAction;
 import com.pkk.model.SysMenu;
 import com.pkk.model.SysUser;
 import com.pkk.service.SysMenuServcie;
@@ -20,7 +17,6 @@ import com.pkk.service.SysMenuServcie;
  * @Description: <>
  * @date 11/2 0002 13:51
  */
-@Controller
 public class SysMenuAction extends BaseAction {
 
 

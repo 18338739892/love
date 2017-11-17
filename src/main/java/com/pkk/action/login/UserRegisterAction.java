@@ -1,6 +1,6 @@
 package com.pkk.action.login;
 
-import com.pkk.base.BaseAction;
+import com.pkk.action.base.BaseAction;
 
 /**
  * @author peikunkun

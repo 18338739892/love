@@ -1,15 +1,13 @@
-package com.pkk.base;
+package com.pkk.action.base;
 
 import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pkk.utils.condition.PageCondition;
 
-import org.apache.commons.lang3.StringUtils;
+
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.apache.struts2.json.annotations.JSON;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +19,7 @@ import java.util.Map;
  * @author peikunkun
  * @version V1.0
  * @Title: MyMavenProject
- * @Package com.pkk.base
+ * @Package com.pkk.action.base
  * @Description: <>
  * @date 10/9 0009 15:59
  */

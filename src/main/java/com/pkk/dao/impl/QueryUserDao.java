@@ -1,12 +1,10 @@
 package com.pkk.dao.impl;
 
-import com.pkk.base.BaseDAO;
+import com.pkk.dao.base.BaseDAO;
 import com.pkk.model.UserModel;
 
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author peikunkun
@@ -16,7 +14,7 @@ import javax.annotation.Resource;
  * @Description: <>
  * @date 10/9 0009 20:50
  */
-@Repository
+@Repository(value = "queryUserDao")
 public class QueryUserDao extends BaseDAO<UserModel> {
 
     /**

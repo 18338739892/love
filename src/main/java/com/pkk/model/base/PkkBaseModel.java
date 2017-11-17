@@ -1,10 +1,10 @@
-package com.pkk.base;
+package com.pkk.model.base;
 
 /**
  * @author peikunkun
  * @version V1.0
  * @Title: love
- * @Package com.pkk.base
+ * @Package com.pkk.action.base
  * @Description: <>
  * @date 11/2 0002 15:09
  */

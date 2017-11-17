@@ -21,19 +21,12 @@ import com.pkk.model.SysMenu;
  * @date 11/2 0002 14:59
  */
 @Service
-public class SysMenuServcie {
+public class SysMenuServcie extends BaseService<SysMenu> {
 
     @Resource
     private SysMenuDAO sysMenuDAO;
 
-    public SysMenuDAO getSysMenuDAO() {
-        return sysMenuDAO;
-    }
-
-    public void setSysMenuDAO(SysMenuDAO sysMenuDAO) {
-        this.sysMenuDAO = sysMenuDAO;
-    }
-
+    @SuppressWarnings(value = "all")
     public List<SysMenu> getMenuList(int roleid) throws Exception {
         List<SysMenu> sysMenu = new ArrayList<SysMenu>();//返回菜单列表
         List<SysMenu> parentMenu = this.sysMenuDAO.getParentMenuList(roleid);//父节点菜单列表
@@ -46,6 +39,7 @@ public class SysMenuServcie {
             }
 
             Collections.sort(parentMenu, new Comparator<SysMenu>() {
+                @Override
                 public int compare(SysMenu arg0, SysMenu arg1) {
                     return arg0.getId().compareTo(arg1.getId());
                 }
