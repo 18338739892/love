@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.pkk.utils.LoveException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -85,7 +86,11 @@ public class BaseDAO<T> implements IBaseDAO<T> {
 
     @Override
     public Integer save(Object entity) {
-        return null;
+        if (entity == null) {
+            throw new LoveException("保存用户信息时-空指针异常");
+        }
+        Integer ressult = (Integer) getSession().save(entity);
+        return ressult;
     }
 
     @Override

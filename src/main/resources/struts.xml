@@ -21,7 +21,45 @@
               value="org.apache.struts2.spring.StrutsSpringObjectFactory"/>
 
     <!--定义 -->
-    <package name="web-default" namespace="/" extends="struts-default"/>
+    <package name="web-default" namespace="/" extends="struts-default,json-default">
+        <!--自定义拦截器及拦截器栈-->
+        <interceptors>
+            <!--用户认证拦截器-->
+            <interceptor name="myInterceptor" class="com.pkk.Interceptor.AuthorityInterceptor"/>
+            <!-- <interceptor name="htmlchartInterceptor" class="com.datalook.interceptor.HTMLCharacterInterceptor"/>-->
+            <!--用户认证拦截器栈，用于防止用户非法访问-->
+            <interceptor-stack name="myStack">
+                <!--<interceptor-ref name="htmlchartInterceptor"/>-->
+                <interceptor-ref name="myInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <!--为该package指定一个默认的拦截器栈，这样就可以不用为每个action指定一拦截器栈-->
+        <default-interceptor-ref name="myStack"/>
+
+        <!-- 全局跳转页 begin-->
+        <global-results>
+            <result name="login">/pages/login.jsp</result><!-- 非法登录跳转页面 -->
+            <!--<result name="fontLogin">fontLogin!userLogin.do</result>&lt;!&ndash; 非法登录前台跳转页面 &ndash;&gt;-->
+            <result name="sysErrorPage">/pages_font/error/systemError.jsp</result>
+            <!--<result name="sysAccounting">/pages_font/error/accounting.jsp</result>-->
+            <!--<result name="characterError">/pages_font/error/characterError.jsp</result>-->
+            <result name="nosession">/pages/main.jsp</result><!-- 非法登录跳转页面 -->
+        </global-results>
+        <!-- 全局跳转页end -->
+        <!--全局异常映射 begin-->
+        <global-exception-mappings>
+            <exception-mapping result="sysErrorPage" exception="com.pkk.utils.LoveException">
+            </exception-mapping>
+        </global-exception-mappings>
+        <!--全局异常映射 end-->
+
+        <!--监控页面-->
+        <!-- <action name="jiankong">
+             <result type="dispatcher" name="success">/jiankong.html</result>
+         </action>-->
+
+    </package>
 
     <!--用户登录 -->
     <include file="config/struts/struts_login.xml"></include>

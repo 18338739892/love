@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @Description: <>
  * @date 10/9 0009 20:50
  */
-@Repository(value = "queryUserDao")
-public class QueryUserDao extends BaseDAO<UserModel> {
+@Repository
+public class UserDao extends BaseDAO<UserModel> {
 
     /**
      * *************************************************************************
@@ -64,6 +64,20 @@ public class QueryUserDao extends BaseDAO<UserModel> {
         } else {
             return (String) object;
         }
+    }
+
+
+    /**
+     * <p>Title: userRegister<／p>
+     * <p>Description: 用户注册<／p>
+     * <p>Copyright: Copyright (c) 2017<／p>
+     *
+     * @author pkk
+     * @date 2017/11/19 0019
+     * @version 1.0
+     */
+    public Integer userRegister(UserModel userModel) {
+        return super.save(userModel);
     }
 
 

@@ -26,9 +26,9 @@ import java.util.Map;
 public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware, SessionAware {
 
     // request对象
-    public HttpServletRequest  servletRequest;
+    public HttpServletRequest  request;
     // response对象
-    public HttpServletResponse servletResponse;
+    public HttpServletResponse response;
     //第几页
     public int                 page;
     //每页显示的总条数
@@ -43,22 +43,24 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
     public Map                 session;
 
 
+
+
     public HttpServletRequest getServletRequest() {
-        return servletRequest;
+        return request;
     }
 
     @Override
     public void setServletRequest(HttpServletRequest servletRequest) {
-        this.servletRequest = servletRequest;
+        this.request = servletRequest;
     }
 
     public HttpServletResponse getServletResponse() {
-        return servletResponse;
+        return response;
     }
 
     @Override
     public void setServletResponse(HttpServletResponse servletResponse) {
-        this.servletResponse = servletResponse;
+        this.response = servletResponse;
     }
 
     public int getPage() {
@@ -128,10 +130,10 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
     public void writeJson(Object object) {
         try {
             String json = JSONObject.toJSONString(object);
-            servletResponse.setContentType("text/html;charset=utf-8");
-            servletResponse.getWriter().write(json);
-            servletResponse.getWriter().flush();
-            servletResponse.getWriter().close();
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().write(json);
+            response.getWriter().flush();
+            response.getWriter().close();
         } catch (IOException e) {
             e.printStackTrace();
         }

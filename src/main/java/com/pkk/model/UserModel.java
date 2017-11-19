@@ -17,16 +17,16 @@ import javax.persistence.*;
 @Entity
 public class UserModel extends BaseModel {
     private Integer id;
-    private String  uname;
-    private String  password;
-    private String  level;
-    private String  verifykey;
-    private String  dsc;
-    private String  sex;
-    private String  age;
+    private String uname;
+    private String password;
+    private String level;
+    private String verifykey;
+    private String dsc;
+    private String sex;
+    private String age;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Override
     public Integer getId() {
@@ -100,6 +100,18 @@ public class UserModel extends BaseModel {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+
+    public static UserModel getUsersBySessionUser(UserModel u) {
+        UserModel u1 = new UserModel();
+        u1.setId(u.getId());
+        u1.setUname(u.getUname());
+        u1.setLevel(u.getLevel());
+        u1.setAge(u.getAge());
+        u1.setDsc(u.getDsc());
+        u1.setVerifykey(u.getVerifykey());
+        return u1;
     }
 
     @Override

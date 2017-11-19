@@ -3,9 +3,11 @@ package com.pkk.action.login;
 import java.io.IOException;
 import java.util.HashMap;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.pkk.Interceptor.UserThreadLocal;
 import com.pkk.model.UserModel;
 import com.pkk.action.base.BaseAction;
-import com.pkk.service.QueryUserService;
+import com.pkk.service.UserService;
 import com.pkk.service.UserLoginService;
 import com.pkk.utils.CookieUtil;
 import com.pkk.utils.ValidateCode;
@@ -58,14 +60,16 @@ public class UserLoginAction extends BaseAction {
     }
 
     public void userLogin() {
-
         boolean result = userLoginService.UserLogin(userModel);
         HashMap<String, String> map = new HashMap<>();
         if (result) {
+            ActionContext.getContext().getSession().put("user", userModel);
+            session.put("user", userModel);//sessionMap操作对象
+            UserThreadLocal.put(userModel);
+            UserThreadLocal.clear();
             map.put(SysConstant.RETURN_CODE, SysConstant.RETURN_CODE_SUCCESS);
             map.put(SysConstant.RETURN_MSG, "密码正确");
             writeJson(map);
-
         } else {
             map.put(SysConstant.RETURN_CODE, SysConstant.RETURN_CODE_ERROR);
             map.put(SysConstant.RETURN_MSG, "密码错误");
@@ -73,6 +77,11 @@ public class UserLoginAction extends BaseAction {
         }
     }
 
+
+    public String userLoginSuccess() {
+
+        return "success";
+    }
 
     /**
      * *************************************************************************
@@ -165,12 +174,12 @@ public class UserLoginAction extends BaseAction {
      * @version V1.0
      * *************************************************************************
      */
-    public static QueryUserService getObject(String name) {
+    public static UserService getObject(String name) {
 
         String[] locations = {"applicationContext.xml"};
         ApplicationContext ctx = new ClassPathXmlApplicationContext(locations);
 
-        return (QueryUserService) ctx.getBean(name);
+        return (UserService) ctx.getBean(name);
 
     }
 
