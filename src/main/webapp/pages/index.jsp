@@ -1010,260 +1010,282 @@
             </div>
         </div>
     </div>
-    <!-- Contact Wrapper End -->
-    <!-- Footer Wrapper Start -->
-    <div class="wd_footer_wrapper wd_toppadder90 wd_bottompadder100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="wd_footer_infobox">
-                        <div class="wd_footicon">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        </div>
-                        <h2>家</h2>
-                        <p>中国</p>
+</div>
+<!-- Contact Wrapper End -->
+<!-- Footer Wrapper Start -->
+<div class="wd_footer_wrapper wd_toppadder90 wd_bottompadder100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wd_footer_infobox">
+                    <div class="wd_footicon">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
                     </div>
+                    <h2>家</h2>
+                    <p>中国</p>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="wd_footer_infobox">
-                        <div class="wd_footicon">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                        </div>
-                        <h2>联系方式</h2>
-                        <p>QQ:656678879 <br>微信:kunzaikj521</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wd_footer_infobox">
+                    <div class="wd_footicon">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
                     </div>
+                    <h2>联系方式</h2>
+                    <p>QQ:656678879 <br>微信:kunzaikj521</p>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="wd_footer_infobox">
-                        <div class="wd_footicon">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <h2>邮箱</h2>
-                        <p>kunzaikx@qq.com <br>kunzaikj@qq.com</p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="wd_footer_infobox">
+                    <div class="wd_footicon">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                     </div>
+                    <h2>邮箱</h2>
+                    <p>kunzaikx@qq.com <br>kunzaikj@qq.com</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="wd_footer_bottom_wrapper wd_toppadder50 wd_bottompadder50">
-        <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;"><i
-                class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
-        <div class="col-md-12">
-            <div class="wd_footer_section">
-                <img src="../js/home/images/header/flogo.png" alt="Logo" class="img-responsive">
-                <p>Copyright &copy; 2017.昆仔科技快讯.<a target="_blank" href="#"></a>
-                </p>
-            </div>
+</div>
+<div class="wd_footer_bottom_wrapper wd_toppadder50 wd_bottompadder50">
+    <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;"><i
+            class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
+    <div class="col-md-12">
+        <div class="wd_footer_section">
+            <img src="../js/home/images/header/flogo.png" alt="Logo" class="img-responsive">
+            <p>Copyright &copy; 2017.昆仔科技快讯.<a target="_blank" href="#"></a>
+            </p>
         </div>
     </div>
-    <!-- Footer Wrapper End -->
+</div>
+<!-- Footer Wrapper End -->
 
 
-    <!--main js file start-->
-    <script type=" text/javascript" src="../js/home/js/jquery.js"></script>
-    <script type="text/javascript" src="../js/home/js/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/home/js/smoothscroll.js"></script>
-    <script type="text/javascript" src="../js/home/js/owl.carousel.js"></script>
-    <script type="text/javascript" src="../js/home/js/modernizr.js"></script>
-    <script type="text/javascript" src="../js/home/js/jquery.magnific-popup.js"></script>
-    <script type="text/javascript" src="../js/home/js/wow.js"></script>
-    <script type="text/javascript" src="../js/home/js/custom.js"></script>
-    <jsp:include page="../pages/support/easyui_support.jsp"></jsp:include>
+<!--main js file start-->
+<script type=" text/javascript" src="../js/home/js/jquery.js"></script>
+<script type="text/javascript" src="../js/home/js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/home/js/smoothscroll.js"></script>
+<script type="text/javascript" src="../js/home/js/owl.carousel.js"></script>
+<script type="text/javascript" src="../js/home/js/modernizr.js"></script>
+<script type="text/javascript" src="../js/home/js/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="../js/home/js/wow.js"></script>
+<script type="text/javascript" src="../js/home/js/custom.js"></script>
+<jsp:include page="../pages/support/easyui_support.jsp"></jsp:include>
 
-    <script type="text/javascript">
-        $(window).on("load", function () {
-            var wow = new WOW({
-                boxClass: 'wow',
-                animateClass: 'animated',
-                offset: 0,
-                mobile: true,
-                mobile: true,
-                live: true
+<script type="text/javascript">
+    $(window).on("load", function () {
+        var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: true,
+            mobile: true,
+            live: true
+        });
+        wow.init();
+    });
+
+
+    /*用户登录或注册的js*/
+    $(document).ready(function () {
+        $("#registerbutton").mouseover(function () {
+            $.messager.show({
+                title: '提示',
+                msg: '填写输入框的信息，点击注册就是进行注册了!',
+                showType: null,
+                timeout: 3000
             });
-            wow.init();
         });
 
 
-        /*用户登录或注册的js*/
-        $(document).ready(function () {
-            $("#registerbutton").mouseover(function () {
-                $.messager.show({
-                    title: '提示',
-                    msg: '填写输入框的信息，点击注册就是进行注册了!',
-                    showType: null,
-                    timeout: 3000
-                });
-            });
+        /*$("#registerbutton").mouseout(function () {
+         });*/
 
 
-            /*$("#registerbutton").mouseout(function () {
-             });*/
-
-
-            /*按enter键登录*/
-            document.onkeydown = function () {
-                if (event.keyCode == 13) {
-                    enterlogin();
-                }
-            }
-            function enterlogin() {
-                var username = $("#username").val();
-                var password = $("#password").val();
-                var verifykey = $("#verifykey").val();
-                var level = $("#level").val();
-                $("#passwordp").text("");
-
-                if (username == null || username.length <= 0) {
-                    alert("请输入用户名")
-                    return;
-                }
-                if (password == null || password.length <= 0) {
-                    alert("请输入密码")
-                    return;
-                }
-                if (verifykey == null || verifykey.length <= 0) {
-                    alert("请输入验证码")
-                    return;
-                }
-                if (level == null || level.length <= 0) {
-                    alert("请输入类型")
-                    return;
-                }
-
-                /*验证用户是否存在*/
-                $.ajax({
-                    url: '<%=contextPath%>/userLogin!verifyUser.action',
-                    type: 'post',
-                    dataType: "json",
-                    async: false,//取消异步通知
-                    data: {'userModel.uname': username},
-                    error: function (data) {
-                        $("#usernamep").val("登录异常");
-                        return;
-                    },
-                    success: function (data) {
-                        if (data.message == 'isNotExist') {
-                            $("#usernamep ").css("color", "red");
-                            $("#usernamep").text(username + "←用户不存在");
-                            return;
-                        }
-                        $("#usernamep ").css("color", "red");
-                        $("#usernamep").text("");
-                        $("#passwordp").text("");
-                    }
-
-                });
-
-                /*登录*/
-                $.ajax({
-                    url: '<%=contextPath%>/userLogin!userLogin.action',
-                    type: 'post',
-                    dataType: "json",
-                    async: false,//取消异步通知
-                    data: {
-                        'userModel.uname': username,
-                        'userModel.password': password,
-                        'userModel.verifykey': verifykey,
-                        'userModel.level': level
-                    },
-                    error: function (data) {
-                        $("#passwordp").val("登录异常");
-                        return;
-                    },
-                    success: function (data) {
-                        if (data.code == "error") {
-                            $("#passwordp").css("color", "red");
-                            $("#passwordp").text("密码错误");
-                            return;
-                        } else {
-                            $("#passwordp").val("");
-                            window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
-//                            document.getElementById("form1").action = "../userLogin!userLogin.action";
-                        }
-                    }
-
-                });
-                /*刷新二维码*/
-                $("#imgRandom").click();
-
-            }
-
-
-            $("#loginbutton").click(function () {
+        /*按enter键登录*/
+        document.onkeydown = function () {
+            if (event.keyCode == 13) {
                 enterlogin();
-            });
-            $("#registerbutton").click(function () {
-                userRegister();
-                /*document.getElementById("form1").action = "../userLogin!testSuccess.action";*/
-                /*$("#form1").submit();*/
-            });
+            }
+        }
+        function enterlogin() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var verifykey = $("#verifykey").val();
+            var level = $("#level").val();
+            $("#passwordp").text("");
 
-
-            /*用户注册身份验证*/
-            function userRegister() {
-                var username = $("#username").val();
-                var password = $("#password").val();
-                var verifykey = $("#verifykey").val();
-                var level = $("#level").val();
-
-
-                if (username == null || username.length <= 0) {
-                    alert("请输入用户名")
-                    return;
-                }
-                if (password == null || password.length <= 0) {
-                    alert("请输入密码")
-                    return;
-                }
-                if (verifykey == null || verifykey.length <= 0) {
-                    alert("请输入验证码")
-                    return;
-                }
-                if (level == null || level.length <= 0) {
-                    alert("请输入类型")
-                    return;
-                }
-
-                $.ajax({
-                    url: '<%=contextPath%>/userRegister!userRegister.action',
-                    type: 'post',
-                    dataType: "json",
-                    async: false,//取消异步通知
-                    data: {
-                        'userModel.uname': username,
-                        'userModel.password': password,
-                        'userModel.verifykey': verifykey,
-                        'userModel.level': level
-                    },
-                    error: function (data) {
-                        $("#passwordp").val("注册异常");
-                        return;
-                    },
-                    success: function (data) {
-                        if (data.code == "error") {
-                            $("#passwordp").css("color", "red");
-                            $("#passwordp").text("注册失败，请重新注册");
-                            return;
-                        } else {
-                            $("#passwordp").val("");
-                            $.messager.confirm('提示', '用户' + username + '已经注册成功,现在是否跳转到主页面？', function (r) {
-                                window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
-                            });
-//                            document.getElementById("form1").action = "../userLogin!userLogin.action";
-                        }
-                    }
-
-                });
-                $("#imgRandom").click();
-
+            if (username == null || username.length <= 0) {
+                alert("请输入用户名")
+                return;
+            }
+            if (password == null || password.length <= 0) {
+                alert("请输入密码")
+                return;
+            }
+            if (verifykey == null || verifykey.length <= 0) {
+                alert("请输入验证码")
+                return;
+            }
+            if (level == null || level.length <= 0) {
+                alert("请输入类型")
+                return;
             }
 
+            if (userIsExit(username)) {
+                $("#usernamep ").css("color", "blue");
+                $("#usernamep").text("用户：" + username + "已经存在，可以直接登录噢");
+                $("#passwordp").text("");
+            } else {
+                $("#usernamep ").css("color", "red");
+                $("#usernamep").text("用户:" + username + "不存在,可以进行注册呦^~^");
+                return;
+            }
 
+            /*登录*/
+            $.ajax({
+                url: '<%=contextPath%>/userLogin!userLogin.action',
+                type: 'post',
+                dataType: "json",
+                async: false,//取消异步通知
+                data: {
+                    'userModel.uname': username,
+                    'userModel.password': password,
+                    'userModel.verifykey': verifykey,
+                    'userModel.level': level
+                },
+                error: function (data) {
+                    $("#passwordp").val("登录异常");
+                    return;
+                },
+                success: function (data) {
+                    if (data.code == "error") {
+                        $("#passwordp").css("color", "red");
+                        $("#passwordp").text("密码错误");
+                        return;
+                    } else {
+                        $("#passwordp").val("");
+                        window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
+//                            document.getElementById("form1").action = "../userLogin!userLogin.action";
+                    }
+                }
+
+            });
+            /*刷新二维码*/
+            $("#imgRandom").click();
+
+        }
+
+
+        $("#loginbutton").click(function () {
+            enterlogin();
+        });
+        $("#registerbutton").click(function () {
+            userRegister();
+            /*document.getElementById("form1").action = "../userLogin!testSuccess.action";*/
+            /*$("#form1").submit();*/
         });
 
 
-    </script>
-    <!--main js file end-->
+        function userIsExit(username) {
+            var result = true;
+            /*验证用户是否存在*/
+            $.ajax({
+                url: '<%=contextPath%>/userLogin!verifyUser.action',
+                type: 'post',
+                dataType: "json",
+                async: false,//取消异步通知
+                data: {'userModel.uname': username},
+                error: function (data) {
+                    $("#usernamep").val("登录异常");
+                    return false;
+                },
+                success: function (data) {
+                    if (data.message == 'isNotExist') {
+                        result = false;
+                    } else {
+                        result = true;
+                    }
+                }
+            });
+            return result;
+        }
+
+
+        /*用户注册身份验证*/
+        function userRegister() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var verifykey = $("#verifykey").val();
+            var level = $("#level").val();
+
+
+            if (username == null || username.length <= 0) {
+                alert("请输入用户名")
+                return;
+            }
+            if (password == null || password.length <= 0) {
+                alert("请输入密码")
+                return;
+            }
+            if (verifykey == null || verifykey.length <= 0) {
+                alert("请输入验证码")
+                return;
+            }
+            if (level == null || level.length <= 0) {
+                alert("请输入类型")
+                return;
+            }
+
+            if (userIsExit(username)) {
+                $("#usernamep ").css("color", "red");
+                $("#usernamep").text("用户：" + username + "已经存在，可以直接登录噢");
+                $("#passwordp").text("");
+                return;
+            } else {
+                $("#usernamep ").css("color", "red");
+                $("#usernamep").text("用户:" + username + "不存在,可以进行注册呦^~^");
+            }
+
+            $.ajax({
+                url: '<%=contextPath%>/userRegister!userRegister.action',
+                type: 'post',
+                dataType: "json",
+                async: false,//取消异步通知
+                data: {
+                    'userModel.uname': username,
+                    'userModel.password': password,
+                    'userModel.verifykey': verifykey,
+                    'userModel.level': level
+                },
+                error: function (data) {
+                    $("#passwordp").val("注册异常");
+                    return;
+                },
+                success: function (data) {
+                    if (data.code == "error") {
+                        $("#passwordp").css("color", "red");
+                        $("#passwordp").text("注册失败，请重新注册");
+                        return;
+                    } else {
+                        $("#passwordp").val("");
+                        $.messager.confirm('提示', '用户' + username + '已经注册成功,现在是否跳转到主页面？', function (r) {
+                            window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
+                        });
+//                            document.getElementById("form1").action = "../userLogin!userLogin.action";
+                    }
+                }
+
+            });
+            $("#imgRandom").click();
+
+        }
+
+
+    });
+
+
+</script>
+<!--main js file end-->
 </div>
 </body>
 </html>

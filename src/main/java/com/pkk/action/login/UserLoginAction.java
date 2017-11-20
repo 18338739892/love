@@ -95,9 +95,7 @@ public class UserLoginAction extends BaseAction {
      * *************************************************************************
      */
     public void verifyUser() {
-
         boolean result = userLoginService.verifyUser(userModel);
-
         HashMap<String, String> returnMsg = new HashMap<>();
         if (result) {
             returnMsg.put("message", "SUCCESS");

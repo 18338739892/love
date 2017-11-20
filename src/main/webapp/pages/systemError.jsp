@@ -13,9 +13,19 @@
 
 </head>
 <body>
+
 </body>
 
 <script type="text/javascript">
+
+
+    /*定时弹框消除
+     $.messager.alert(' ', '<font size=\"2\" color=\"#666666\"><strong>数据库暂无记录！</strong></font>', 'infoSunnyIcon', function () {
+     });
+
+     setTimeout(function () {
+     $(".messager-body").window('close');
+     }, 3000);*/
 
 
     $(document).ready(function () {
