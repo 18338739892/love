@@ -26,7 +26,7 @@ public interface PkkDAO extends Serializable {
 
     void setParamString(SQLQuery sqlQuery, String[] params, Object[] values);
 
-    String setParamString(Query query);
+    void setParamString(Query query, String[] params, Object[] values);
 
     Integer save(Object entity);
 

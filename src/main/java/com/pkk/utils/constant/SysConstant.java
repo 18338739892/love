@@ -52,10 +52,11 @@ public class SysConstant {
     public static final String RETURN_CODE_ERROR   = "error";
 
 
-    public static String DB_URL    = "";
-    public static String DB_DRIVER = "";
-    public static String DB_USER   = "";
-    public static String DB_PWD    = "";
+    public static String DB_URL        = "";
+    public static String DB_DRIVER     = "";
+    public static String DB_USER       = "";
+    public static String DB_PWD        = "";
+    public static String INIT_MENU_URL = "";
 
 
     static {
@@ -69,8 +70,7 @@ public class SysConstant {
                 DB_DRIVER = properties.getProperty("db.driverClassName");//数据库驱动地址
                 DB_USER = properties.getProperty("db.username");//数据库驱动地址
                 DB_PWD = properties.getProperty("db.password");//数据库驱动地址
-
-
+                INIT_MENU_URL = properties.getProperty("init_menu_url");//用户初始化菜单地址
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

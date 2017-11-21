@@ -9,6 +9,10 @@
         <action name="sysMenuAction" class="com.pkk.action.menu.SysMenuAction">
             <result name="openNorth">pages/north.jsp</result>
             <result name="makeMenu">pages/west.jsp</result>
+            <!--提醒用户开启菜单的功能-->
+            <result name="openmenuoperation">pages/menu/openmenu.jsp</result>
+            <!--初始化菜单-->
+            <result name="initmenu">pages/menu/initmenu.jsp</result>
         </action>
     </package>
 

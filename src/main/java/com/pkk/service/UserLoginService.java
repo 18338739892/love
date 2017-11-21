@@ -146,4 +146,25 @@ public class UserLoginService extends BaseService<UserModel> {
 
     }
 
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return com.pkk.model.UserModel
+     * @Description: <根据用户账号密码进行查询用户的信息>
+     * @author peikunkun
+     * @date 2017年11/21 0021 11:49
+     * @version V1.0
+     * *************************************************************************
+     */
+    public UserModel findUserByProperties(String name, String password) {
+
+        if (name == null || name.length() <= 0 || password == null || password.length() <= 0) {
+            return null;
+        }
+        UserModel userModel = userDao.getUserModel(name, password);
+        return userModel;
+    }
+
+
 }

@@ -1179,6 +1179,7 @@
                     } else {
                         $("#verifykeyp").text("");
                         $("#passwordp").val("");
+                        $("#imgRandom").click();
                         /*跳转页面*/
                         window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
 //                            document.getElementById("form1").action = "../userLogin!userLogin.action";
@@ -1282,13 +1283,16 @@
                     if (data.code == "error") {
                         $("#passwordp").css("color", "red");
                         $("#passwordp").text(data.msg);
+                        $("#imgRandom").click();
                         return;
                     } else if (data.code == "verifykeyerror") {
                         $("#verifykeyp").css("color", "red");
                         $("#verifykeyp").text(data.msg);
+                        $("#imgRandom").click();
                         return;
                     } else {
                         $("#passwordp").val("");
+                        $("#imgRandom").click();
                         $.messager.confirm('提示', '用户' + username + '已经注册成功,现在是否跳转到主页面？', function (r) {
                             window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
                         });

@@ -97,4 +97,25 @@ public class UserDao extends BaseDAO<UserModel> {
     }
 
 
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return com.pkk.model.UserModel
+     * @Description: <获取用户的信息根据账户和密码>
+     * @author peikunkun
+     * @date 2017年11/21 0021 11:46
+     * @version V1.0
+     * *************************************************************************
+     */
+    public UserModel getUserModel(String name, String password) {
+        String hql = "from UserModel where uname=:name and password=:password";
+        List list = super.findByHqls(hql, new String[]{"name", "password"}, new Object[]{name, password});
+        if (list == null || list.size() <= 0) {
+            return null;
+        }
+        return (UserModel) list.get(0);
+    }
+
+
 }

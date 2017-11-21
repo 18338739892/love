@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.pkk.utils.LoveException;
+
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -80,8 +81,13 @@ public class BaseDAO<T> implements IBaseDAO<T> {
     }
 
     @Override
-    public String setParamString(Query query) {
-        return null;
+    public void setParamString(Query query, String[] params, Object[] values) {
+        if (params == null || params.length <= 0) {
+            return;
+        }
+        for (int i = 0; i < params.length; i++) {
+            query.setParameter(params[i], values[i]);
+        }
     }
 
     @Override
@@ -160,7 +166,10 @@ public class BaseDAO<T> implements IBaseDAO<T> {
 
     @Override
     public List findByHqls(String hql, String[] params, Object[] values) {
-        return null;
+        Query query = getSession().createQuery(hql);
+        setParamString(query, params, values);
+        query.list();
+        return query.list();
     }
 
     @Override
