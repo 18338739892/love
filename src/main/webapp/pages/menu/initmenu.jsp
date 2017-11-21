@@ -61,7 +61,7 @@
                 </td>
                 <td width="100px">
                     <select class="easyui-validatebox"
-                            style="width:inherit" id="plevel" name="sysMenu.plevel" onchange="closeMenuUrl()">
+                            style="width:inherit" id="plevel" name="sysMenu.plevel">
                         <option value="-1" selected="selected">---请选择---</option>
                         <option value="1">是</option>
                         <option value="0">否</option>
@@ -75,10 +75,7 @@
                 <td>
                     <select class="easyui-validatebox"
                             style="height: 22px" id="parentid" name="sysMenu.parentid">
-                        <option value="-1" selected="selected">---请选择---</option>
-                        <s:iterator value="#request.dictionary.userType" id="dd">
-                            <option value='<s:property value="datavalue"/>'><s:property value="dataname"/></option>
-                        </s:iterator>
+                        <option value="0" selected="selected">---请选择---</option>
                     </select>
                 </td>
             </tr>
@@ -117,6 +114,7 @@
             var menuurl = $("#menuurl").val();
             var status = $("#status").val();
             var plevel = $("#plevel").val();
+            var parentid = $("#parentid").val();
 
             if (menuname == null || menuname.length <= 0) {
                 $.messager.alert("提示", "菜单名称不能为空", "error");
@@ -143,13 +141,20 @@
                 return;
             }
 
+            if (plevel == "0") {
+                if (parentid == null || parentid.length <= 0) {
+                    $.messager.alert("提示", "请选择所属父菜单", "error");
+                }
+            }
+
+
             if (!verifyMneuName(menuname, userid)) {
-                $.messager.alert("提示", "菜单已经存在，请重试", "error");
+                $.messager.alert("提示", menuname + "-已经存在,请换个名字重试!", "error");
                 return;
             }
 
 
-            if (submitMneu(userid, menuname, menuurl, status, plevel)) {
+            if (submitMneu(userid, menuname, menuurl, status, plevel, parentid)) {
                 $.messager.alert("提示", "创建菜单成功", "info");
             } else {
                 $.messager.alert("提示", "创建菜单失败", "error");
@@ -160,7 +165,11 @@
 
 
         /*提交菜单创建表单*/
-        function submitMneu(userid, menuname, menuurl, status, plevel) {
+        function submitMneu(userid, menuname, menuurl, status, plevel, parentid) {
+            /*为父节点的话讲父节点属性设置为0*/
+            if (plevel == "1") {
+                parentid = "0";
+            }
             var result = false;
             $.ajax({
                 url: '<%=contextPath%>/sysMenuAction!markMenu.action',
@@ -172,6 +181,7 @@
                     "sysMenu.menuname": menuname,
                     "sysMenu.menuurl": menuurl,
                     "sysMenu.status": status,
+                    "sysMenu.parentid": parentid,
                     "userid": userid,
                     "sysMenu.inputuserid": userid
                 },
@@ -211,7 +221,6 @@
                 success: function (data) {
                     if (data.code == "success") {
                         result = false;
-                        $.messager.alert("提示", menuname + "-已经存在,请换个名字重试!", "error");
                     } else {
                         result = true;
                     }
@@ -230,10 +239,10 @@
                 $("#menuurl").attr("readonly", "readonly");
                 $("#parentmenu").hide();
                 $.messager.alert("提示", "父菜单不需要菜单地址", "info");
-                loadMenu(userid);
             } else {
                 $("#menuurl").removeAttr("readonly");
                 $("#parentmenu").show();
+                loadMenu(userid);
             }
 
         });
@@ -251,11 +260,12 @@
                 },
                 success: function (data) {
                     if (data.code == "success") {
-                        alert(data.msg);
+                        $("#parentid").find("option").remove();
+                        $("#parentid").append("<option value=\"0\" selected=\"selected\">---请选择---</option>");
                         $.each(data.msg, function (i, sysmenu) {
-                            alert("测试" + sysmenu.id);
+                            $("#parentid").append("<option value='" + sysmenu.id + "'>" + sysmenu.menuname + "</option>");
                         })
-                        
+
                         /*for (i = 0; i < data.msg.length; i++) {
                          alert("数据为:" + data.msg.id);
                          $("#selectId").append("<option value='" + data.msg[i].id + "'>" + data.msg[i].menuname + "</option>");
@@ -264,7 +274,7 @@
                         /*$.messager.alert("提示", menuname + "-已经存在,请换个名字重试!", "error");*/
                     } else {
                         result = true;
-                        alert(data.msg);
+                        $.messager.alert("提示", data.msg, "info");
                     }
                 }
             });
