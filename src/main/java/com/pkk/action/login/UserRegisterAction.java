@@ -1,15 +1,19 @@
 package com.pkk.action.login;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.pkk.Interceptor.UserThreadLocal;
+import com.pkk.interceptor.UserThreadLocal;
 import com.pkk.action.base.BaseAction;
 import com.pkk.model.UserModel;
 import com.pkk.service.UserLoginService;
+import com.pkk.utils.CookieUtil;
 import com.pkk.utils.constant.SysConstant;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
+
+import org.apache.struts2.ServletActionContext;
 
 /**
  * @author peikunkun
@@ -45,8 +49,17 @@ public class UserRegisterAction extends BaseAction {
 
     @SuppressWarnings(value = "all")
     public void userRegister() {
-        boolean result = userLoginService.userRegister(userModel);
         HashMap<String, String> map = new HashMap<>();
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String validateCode = CookieUtil.getCookieValue(request, "scaptcha");
+        if (!validateCode.equalsIgnoreCase(userModel.getVerifykey())) {
+            map.put(SysConstant.RETURN_CODE, "verifykeyerror");
+            map.put(SysConstant.RETURN_MSG, "验证码错误");
+            writeJson(map);
+            return;
+        }
+
+        boolean result = userLoginService.userRegister(userModel);
         if (result) {
             ActionContext.getContext().getSession().put("user", userModel);
             session.put("user", userModel);//sessionMap操作对象

@@ -3,7 +3,9 @@ package com.pkk.service;
 import javax.annotation.Resource;
 
 import com.pkk.dao.impl.UserDao;
+import com.pkk.model.FeedBack;
 import com.pkk.utils.LoveException;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -29,15 +31,15 @@ public class UserLoginService extends BaseService<UserModel> {
 
     @SuppressWarnings("unused")
     private static String logInfo = "-[用户登录操作]-";
-    private static Logger logger = LoggerUtil.getLogger(logInfo, "userlogin");
-    private static Logger email = LoggerUtil.getEmail(logInfo);
-    private static Logger dblog = LoggerUtil.getDataBaseLog(logInfo);
+    private static Logger logger  = LoggerUtil.getLogger(logInfo, "userlogin");
+    private static Logger email   = LoggerUtil.getEmail(logInfo);
+    private static Logger dblog   = LoggerUtil.getDataBaseLog(logInfo);
 
 
     @Resource
     private UserService userService;
     @Resource
-    private UserDao userDao;
+    private UserDao     userDao;
 
     public UserService getUserService() {
         return userService;
@@ -102,7 +104,7 @@ public class UserLoginService extends BaseService<UserModel> {
             return false;
         }
         userModel.setPassword(MD5Util.md5(userModel.getPassword()));
-        Integer result = userDao.userRegister(userModel);
+        Integer result = userDao.saveUser(userModel);
         if (result == null || result <= 0) {
             return false;
         } else {
@@ -113,5 +115,35 @@ public class UserLoginService extends BaseService<UserModel> {
         }
     }
 
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return boolean
+     * @Description: <用户反馈信息>
+     * @author peikunkun
+     * @date 2017年11/21 0021 10:40
+     * @version V1.0
+     * *************************************************************************
+     */
+    public boolean userFeedBack(FeedBack feedBack) {
+        if (feedBack == null) {
+            return false;
+        }
+        Integer result = userDao.saveUserFeedBack(feedBack);
+        if (result == null || result <= 0) {
+            return false;
+        } else {
+            LoggerUtilMDC.putName(feedBack.getName());//记录用户名[日志]
+            dblog.info("用户进行反馈信息操作 | 操作用户 -：" + feedBack.getName() + "--反馈的信息为:" + feedBack.toString());
+            email.error("用户名:" + feedBack.getName() + "-于" + StringUtils.getDateStr() + "进行反馈信息操作,反馈的信息如下:\n" +
+                    "用户名:" + feedBack.getName() + "\n" +
+                    "电话:" + feedBack.getPhone() + "\n" +
+                    "邮箱:" + feedBack.getEmail() + "\n" +
+                    "反馈信息:" + feedBack.getMessage());//发送邮件
+            return true;
+        }
+
+    }
 
 }

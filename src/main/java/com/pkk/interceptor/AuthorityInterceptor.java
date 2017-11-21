@@ -1,11 +1,9 @@
-package com.pkk.Interceptor;
+package com.pkk.interceptor;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.pkk.action.login.UserLoginAction;
 import com.pkk.action.login.UserRegisterAction;
-import com.pkk.model.SysUser;
 import com.pkk.model.UserModel;
 import org.apache.struts2.ServletActionContext;
 

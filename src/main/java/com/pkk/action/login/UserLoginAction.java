@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.pkk.Interceptor.UserThreadLocal;
+import com.pkk.interceptor.UserThreadLocal;
+import com.pkk.model.FeedBack;
 import com.pkk.model.UserModel;
 import com.pkk.action.base.BaseAction;
 import com.pkk.service.UserService;
@@ -18,6 +19,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -37,7 +39,16 @@ public class UserLoginAction extends BaseAction {
 
 
     private UserModel userModel;
+    private FeedBack  feedBack;
 
+
+    public FeedBack getFeedBack() {
+        return feedBack;
+    }
+
+    public void setFeedBack(FeedBack feedBack) {
+        this.feedBack = feedBack;
+    }
 
     @Resource
     private UserLoginService userLoginService;
@@ -60,8 +71,19 @@ public class UserLoginAction extends BaseAction {
     }
 
     public void userLogin() {
+        HashMap<String, String> map = new HashMap<>();//返回参数
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String validateCode = CookieUtil.getCookieValue(request, "scaptcha");
+        if (!validateCode.equalsIgnoreCase(userModel.getVerifykey())) {
+            map.put(SysConstant.RETURN_CODE, "verifykeyerror");
+            map.put(SysConstant.RETURN_MSG, "验证码错误");
+            writeJson(map);
+            return;
+        }
+
+
         boolean result = userLoginService.UserLogin(userModel);
-        HashMap<String, String> map = new HashMap<>();
         if (result) {
             ActionContext.getContext().getSession().put("user", userModel);
             session.put("user", userModel);//sessionMap操作对象
@@ -78,8 +100,14 @@ public class UserLoginAction extends BaseAction {
     }
 
 
+    /**
+     * @Title: 用户成功登陆到主页面<br>
+     * @Description: <><br>
+     * @author peikunkun<br>
+     * @date 2017年11/21 0021 10:38<br>
+     * @version V1.0<br>
+     */
     public String userLoginSuccess() {
-
         return "success";
     }
 
@@ -134,6 +162,29 @@ public class UserLoginAction extends BaseAction {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * *************************************************************************
+     *
+     * @param
+     * @return void
+     * @Description: <用户信息反馈>
+     * @author peikunkun
+     * @date 2017年11/21 0021 10:49
+     * @version V1.0
+     * *************************************************************************
+     */
+    public void userFeedBack() {
+        boolean result = userLoginService.userFeedBack(feedBack);
+        HashMap<String, String> returnMsg = new HashMap<>();
+        if (result) {
+            returnMsg.put("message", "SUCCESS");
+        } else {
+            returnMsg.put("message", "ERROR");
+        }
+        writeJson(returnMsg);
     }
 
 

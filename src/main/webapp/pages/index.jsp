@@ -393,7 +393,10 @@
                                     </div>--%>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label id="verifykeyl">验证码 :</label>
+                                        <div>
+                                            <p style="text-align: left;float: left;font-style: oblique;font-size: large">
+                                                验证码 :</p>
+                                            <p id="verifykeyp" style="text-align: right;float: right"></p></div>
                                         <input type="text" name="userModel.verifykey" id="verifykey"
                                                class="easyui-validatebox"
                                                data-options="required:true,validType:'length[4,4]',invalidMessage:'验证码为四位'">
@@ -992,16 +995,17 @@
                     <div class="wd_contact_form">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" placeholder="Full Name">
-                                <input type="text" placeholder="Email">
-                                <input type="text" placeholder="Phone">
+                                <input type="text" placeholder="Full Name" name="feedBack.name" id="feedback_name">
+                                <input type="text" placeholder="Email" name="feedBack.email" id="feedback_email">
+                                <input type="text" placeholder="Phone" name="feedBack.phone" id="feedback_phone">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <textarea rows="7" placeholder="Message"></textarea>
+                                <textarea rows="7" placeholder="Message" name="feedBack.message"
+                                          id="feedback_message"></textarea>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="wd_btn">
-                                    <button type="submit" id="wd_submit">Send a Message</button>
+                                    <button type="submit" id="feedback_submit">Send a Message</button>
                                 </div>
                             </div>
                         </div>
@@ -1135,9 +1139,11 @@
                 $("#usernamep ").css("color", "blue");
                 $("#usernamep").text("用户：" + username + "已经存在，可以直接登录噢");
                 $("#passwordp").text("");
+                $("#verifykeyp").text("");
             } else {
                 $("#usernamep ").css("color", "red");
                 $("#usernamep").text("用户:" + username + "不存在,可以进行注册呦^~^");
+                $("#verifykeyp").text("");
                 return;
             }
 
@@ -1160,18 +1166,27 @@
                 success: function (data) {
                     if (data.code == "error") {
                         $("#passwordp").css("color", "red");
-                        $("#passwordp").text("密码错误");
+                        $("#passwordp").text(data.msg);
+                        /*刷新二维码*/
+                        $("#imgRandom").click();
+                        return;
+                    } else if (data.code == "verifykeyerror") {
+                        $("#verifykeyp").css("color", "red");
+                        $("#verifykeyp").text(data.msg);
+                        /*刷新二维码*/
+                        $("#imgRandom").click();
                         return;
                     } else {
+                        $("#verifykeyp").text("");
                         $("#passwordp").val("");
+                        /*跳转页面*/
                         window.location.href = '<%=contextPath%>/userLogin!userLoginSuccess.action';
 //                            document.getElementById("form1").action = "../userLogin!userLogin.action";
                     }
                 }
 
             });
-            /*刷新二维码*/
-            $("#imgRandom").click();
+
 
         }
 
@@ -1240,10 +1255,12 @@
                 $("#usernamep ").css("color", "red");
                 $("#usernamep").text("用户：" + username + "已经存在，可以直接登录噢");
                 $("#passwordp").text("");
+                $("#verifykeyp").text("");
                 return;
             } else {
                 $("#usernamep ").css("color", "red");
                 $("#usernamep").text("用户:" + username + "不存在,可以进行注册呦^~^");
+                $("#verifykeyp").text("");
             }
 
             $.ajax({
@@ -1264,7 +1281,11 @@
                 success: function (data) {
                     if (data.code == "error") {
                         $("#passwordp").css("color", "red");
-                        $("#passwordp").text("注册失败，请重新注册");
+                        $("#passwordp").text(data.msg);
+                        return;
+                    } else if (data.code == "verifykeyerror") {
+                        $("#verifykeyp").css("color", "red");
+                        $("#verifykeyp").text(data.msg);
                         return;
                     } else {
                         $("#passwordp").val("");
@@ -1278,6 +1299,77 @@
             });
             $("#imgRandom").click();
 
+        }
+
+        /*账号登录与注册结束*/
+
+        /*发送反馈信息给我们*/
+
+
+        $("#feedback_submit").click(function () {
+            feedBack();
+        });
+
+        function feedBack() {
+            var name = $("#feedback_name").val();
+            var message = $("#feedback_message").val();
+            var phone = $("#feedback_phone").val();
+            var email = $("#feedback_email").val();
+
+            if (name == null || name.length <= 0) {
+                alert("请输入你的姓名")
+                return;
+            }
+            if (email == null || email.length <= 0) {
+                alert("请输入你的邮箱")
+                return;
+            }
+            if (phone == null || phone.length <= 0) {
+                alert("请输入你的电话")
+                return;
+            }
+            if (message == null || message.length <= 0) {
+                alert("请输入要反馈的信息")
+                return;
+            }
+            if (feedback_ajax(name, email, phone, message)) {
+                $.messager.alert('提示', '恭喜你反馈信息成功!', 'info');
+                $("#feedback_name").val("");
+                $("#feedback_message").val("");
+                $("#feedback_phone").val("");
+                $("#feedback_email").val("");
+            } else {
+                $.messager.alert('提示', '反馈信息出错了，在试一次!', 'error');
+            }
+
+
+        }
+
+        function feedback_ajax(name, email, phone, message) {
+            var result = false;
+            $.ajax({
+                url: '<%=contextPath%>/userLogin!userFeedBack.action',
+                type: "post",
+                dataType: "json",
+                async: false,
+                data: {
+                    'feedBack.name': name,
+                    'feedBack.email': email,
+                    'feedBack.phone': phone,
+                    'feedBack.message': message
+                },
+                error: function (data) {
+                    result = false;
+                },
+                success: function (data) {
+                    if (data.message == "SUCCESS") {
+                        result = true;
+                    } else {
+                        result = false;
+                    }
+                }
+            });
+            return result;
         }
 
 

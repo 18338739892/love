@@ -1,4 +1,4 @@
-package com.pkk.Interceptor;
+package com.pkk.interceptor;
 
 import com.pkk.model.UserModel;
 

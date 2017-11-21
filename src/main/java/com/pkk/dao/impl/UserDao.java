@@ -3,6 +3,7 @@ package com.pkk.dao.impl;
 import java.util.List;
 
 import com.pkk.dao.base.BaseDAO;
+import com.pkk.model.FeedBack;
 import com.pkk.model.UserModel;
 
 import org.springframework.stereotype.Repository;
@@ -76,8 +77,23 @@ public class UserDao extends BaseDAO<UserModel> {
      * @date 2017/11/19 0019
      * @version 1.0
      */
-    public Integer userRegister(UserModel userModel) {
+    public Integer saveUser(UserModel userModel) {
         return super.save(userModel);
+    }
+
+    /**
+     * *************************************************************************
+     *
+     * @param feedBack
+     * @return a
+     * @Description: <保存用户的反馈信息>
+     * @author peikunkun
+     * @date 11/21 0021 10:4210:42
+     * @version V1.0
+     * *************************************************************************
+     */
+    public Integer saveUserFeedBack(FeedBack feedBack) {
+        return super.save(feedBack);
     }
 
 
